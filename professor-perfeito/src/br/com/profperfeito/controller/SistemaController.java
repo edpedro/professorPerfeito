@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SistemaController {
 
-	@RequestMapping("/tela/telaInicial")
+	@RequestMapping("/")
 	public String olaMundo() {
 		return "tela/telaInicial";
 	}

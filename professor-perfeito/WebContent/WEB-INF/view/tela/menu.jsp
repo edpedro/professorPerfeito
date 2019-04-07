@@ -29,7 +29,7 @@
                           <li><a href="#">Ajuda</a></li>
                           <li><a href="#">Fala conosco</a></li>
                           <li><a href="#" data-target="#login" data-toggle="modal">Login</a></li>
-                          <li class="btn-trial"><a href="#">Cadastre-se</a></li>
+                          <li class="btn-trial"><a href="#" data-target="#cadastro" data-toggle="modal">Cadastre-se</a></li>
                     </ul>
               </div>
         </div>

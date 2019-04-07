@@ -519,3 +519,27 @@ var objDiv = document.getElementById('teste');
       visivel = false;         
 }
 }
+//check
+$(document).ready(function(){
+    // Use only for V1
+    $('#radioBtn span').on('click', function(){
+        var sel = $(this).data('value');
+        var tog = $(this).data('toggle');
+        $('#'+tog).val(sel);
+        // You can change these lines to change classes (Ex. btn-default to btn-danger)
+        $('span[data-toggle="'+tog+'"]').not('[data-value="'+sel+'"]').removeClass('active btn-green').addClass('notActive btn-default');
+        $('span[data-toggle="'+tog+'"][data-value="'+sel+'"]').removeClass('notActive btn-default').addClass('active btn-green');
+    });
+    
+    // Use only for V2
+    $('#radioBtnV2 span').on('click', function(){
+        var sel = $(this).data('value');
+        var tog = $(this).data('toggle');
+        var active = $(this).data('active');
+        var classes = "btn-default btn-primary btn-success btn-info btn-warning btn-danger btn-link";
+        var notactive = $(this).data('notactive');
+        $('#'+tog).val(sel);
+        $('span[data-toggle="'+tog+'"]').not('[data-value="'+sel+'"]').removeClass('active '+classes).addClass('notActive '+notactive);
+        $('span[data-toggle="'+tog+'"][data-value="'+sel+'"]').removeClass('notActive '+classes).addClass('active '+active);
+    });
+});

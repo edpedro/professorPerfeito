@@ -22,7 +22,7 @@ public class SistemaController {
 	@RequestMapping("save")
 	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado) {
 
-			//cadastrar o professor e redirecionar para tela de curso
+		// cadastrar o professor e redirecionar para tela de curso
 		if (estado.equalsIgnoreCase("p")) {
 
 			ProfessorDao dao = new ProfessorDao();
@@ -30,11 +30,12 @@ public class SistemaController {
 
 			return new ModelAndView("redirect:tela/cadastroCurso");
 		}
-		
-		//cadastrar aluno
+
+		// cadastrar aluno e redirecionar para tela inicial
 		AlunoDao dao = new AlunoDao();
 		dao.salvar(aluno);
 
 		return new ModelAndView("redirect:/");
 	}
+
 }

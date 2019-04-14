@@ -431,11 +431,11 @@
 							href="#" class="fa fa-google"></a>
 						<p class="login-box-msg"></p>
 						<div class="form-group">
-							<form name="" id="loginForm">
+							<form action="save" method="post">
 								<div class="form-group has-feedback">
 									<!----- username -------------->
 									<input class="form-control" placeholder="Nome" id="loginid"
-										type="text" autocomplete="off" /> <span
+										type="text" autocomplete="off" name="nome"/> <span
 										style="display: none; font-weight: bold; position: absolute; color: red; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 										id="span_loginid"></span>
 									<!---Alredy exists  ! -->
@@ -444,7 +444,7 @@
 								<div class="form-group has-feedback">
 									<!----- password -------------->
 									<input class="form-control" placeholder="Email" id="loginpsw"
-										type="email" autocomplete="off" /> <span
+										type="email" autocomplete="off" name="email"/> <span
 										style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 										id="span_loginpsw"></span>
 									<!---Alredy exists  ! -->
@@ -453,7 +453,7 @@
 								<div class="form-group has-feedback">
 									<!----- password -------------->
 									<input class="form-control" placeholder="Senha" id="loginpsw"
-										type="password" autocomplete="off" /> <span
+										type="password" autocomplete="off" name="senha"/> <span
 										style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 										id="span_loginpsw"></span>
 									<!---Alredy exists  ! -->

@@ -13,7 +13,7 @@ public class Professor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idprofessor;
+	private int idprofessor;	
 	
 	@Column
 	private String nome;

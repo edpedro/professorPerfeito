@@ -1,5 +1,7 @@
 package br.com.profPerfeito.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,8 @@ public class SistemaController {
 	}
 
 	@RequestMapping("save")
-	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado, Model model, RedirectAttributes redirectAttributes) {
+	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado, Model model, final RedirectAttributes redirectAttributes, 
+			HttpServletRequest request) {
 
 		// cadastrar o professor e redirecionar para tela de curso
 		if (estado.equalsIgnoreCase("p")) {
@@ -32,8 +35,9 @@ public class SistemaController {
 			ProfessorDao dao = new ProfessorDao();
 			dao.salvar(professor);
 			
-			//passa o id atual para o controller do curso
-			redirectAttributes.addFlashAttribute("idProf", professor.getIdprofessor());
+			//passa o id atual e enviar o controller do curso			
+			request.getSession().setAttribute("professor", professor.getIdprofessor());
+			
 
 
 					

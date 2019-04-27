@@ -519,6 +519,18 @@ var objDiv = document.getElementById('teste');
       visivel = false;         
 }
 }
+ function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 //check
 $(document).ready(function(){
     // Use only for V1

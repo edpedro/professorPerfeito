@@ -56,7 +56,8 @@
 				</div>
 			</div>
 		</div>
-		<form action="saveCurso" method="post" role="form" class="form">
+		<form action="saveCurso" method="post" role="form" class="form"
+			enctype="multipart/form-data">
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
 					<div class="col-md-12">
@@ -84,9 +85,10 @@
 										competências</label> <input maxlength="200" type="text"
 										name="competencia" required="required" class="form-control"
 										placeholder="Adicione outras competências" />
-										
-										<!-- id do professor -->
-									<input type="text" id="professor" name="professor" value="${professor.idprofessor}">
+
+									<!-- id do professor -->
+									<input type="hidden" id="professor" name="professor"
+										value="${sessionScope.professor}">
 								</div>
 
 							</div>
@@ -120,9 +122,8 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="customRadioInline1"
-										name="customRadioInline1" class="custom-control-input"
-										name="ministra" value="inividual"> <label
+									<input type="radio" id="ministra" name="ministra"
+										class="custom-control-input" value="inividual"> <label
 										class="custom-control-label" for="customRadioInline1">Aula
 										individual</label>
 								</div>
@@ -131,9 +132,8 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radsio" id="customRadioInline1"
-										name="customRadioInline1" class="custom-control-input"
-										name="ministra" value="grupo"> <label
+									<input type="radio" id="ministra" name="ministra"
+										class="custom-control-input" value="grupo"> <label
 										class="custom-control-label" for="customRadioInline1">Aula
 										em grupo</label>
 								</div>
@@ -193,27 +193,12 @@
 					<div class="col-md-12">
 						<h3>Foto</h3>
 						<div class="form-group">
-							<div class="file-upload">
-								<button class="file-upload-btn" type="button"
-									onclick="$('.file-upload-input').trigger( 'click' )">Adicionar
-									Imagem</button>
+							<div class="container">
+								<div class="row">
+									<input class="fot" name="file" type='file' onchange="readURL(this);" />
 
-								<div class="image-upload-wrap">
-									<input class="file-upload-input" type='file'
-										onchange="readURL(this);" accept="image/*" />
-									<div class="drag-text">
-										<h3>Selecione uma Foto</h3>
-									</div>
 								</div>
-								<div class="file-upload-content">
-									<img class="file-upload-image" src="#" alt="your image" />
-									<div class="image-title-wrap">
-										<button type="button" onclick="removeUpload()"
-											class="remove-image">
-											Remove <span class="image-title">Uploaded Image</span>
-										</button>
-									</div>
-								</div>
+								<img id="blah" src="" alt="" />
 							</div>
 						</div>
 						<h3>Fale um pouco mais sobre você</h3>

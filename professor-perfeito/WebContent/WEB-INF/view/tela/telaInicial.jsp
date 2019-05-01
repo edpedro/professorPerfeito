@@ -432,7 +432,7 @@
 						<p class="login-box-msg"></p>
 						<div class="form-group">
 							<form action="save" method="post">
-							<input type="hidden" name="id" value="${professor.idprofessor}">
+							
 								<div class="form-group has-feedback">
 									<!----- username -------------->
 									<input class="form-control" placeholder="Nome" id="loginid"

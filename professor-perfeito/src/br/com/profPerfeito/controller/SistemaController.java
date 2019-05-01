@@ -1,4 +1,4 @@
-package br.com.profPerfeito.controller;
+ package br.com.profPerfeito.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.profPerfeito.model.Aluno;
 import br.com.profPerfeito.model.AlunoDao;
@@ -26,8 +25,7 @@ public class SistemaController {
 	}
 
 	@RequestMapping("save")
-	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado, Model model, final RedirectAttributes redirectAttributes, 
-			HttpServletRequest request) {
+	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado, Model model, HttpServletRequest request) {
 
 		// cadastrar o professor e redirecionar para tela de curso
 		if (estado.equalsIgnoreCase("p")) {

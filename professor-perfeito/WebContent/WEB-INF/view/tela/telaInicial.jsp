@@ -487,8 +487,8 @@
 	</div>
 
 
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
 	<script

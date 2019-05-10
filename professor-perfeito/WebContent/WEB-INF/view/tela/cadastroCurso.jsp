@@ -20,6 +20,38 @@
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos1.css">
+	
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+	<!--listar sub materia, AJAX E JSON -->
+	$(document).ready(function() {	
+		function carregaTabelaJSon() {			
+			var idMateria = $('#materia').val();
+			$.post("filter", {				
+		
+				'idMateria' : idMateria
+				
+			}, function(dadosJSON) {
+				
+				var linhas = '';
+				var qtdItens = 0;
+				
+				$(dadosJSON).each(function (i) {                  
+					
+					linhas += "<option value='"+ dadosJSON[i].subMateria + "'>" + dadosJSON[i].subMateria + "</option>";           	
+	              });
+				
+                $('#listarMateria').html(linhas);                
+			});
+		}
+		
+		$("#materia").change(function() {
+			carregaTabelaJSon();
+		});
+	});
+	
+</script>
 
 </head>
 <body>
@@ -65,19 +97,14 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="exampleFormControlSelect1">Materia</label> <select
-										class="form-control" id="exampleFormControlSelect1"
+									<label for="materia">Materia</label> <select
+										class="form-control" id="materia"
 										name="materia">
-										<option>Escolha</option>
-										<option>Reforço escolar</option>
-										<option>Línguas</option>
-										<option value="Informática">Informática</option>
-										<option>Música</option>
-										<option>Esportes e dança</option>
-										<option>Artes e Lazer</option>
-										<option>Saúde e Bem-estar</option>
-										<option value="Desenvolvimento">Desenvolvimento
-											pessoal</option>
+										<option value="">Materia</option>
+										<c:forEach items="${listaMateria}" var="obj">										
+											<option value="${obj.idmateria}" <c:if test="${obj.idmateria eq subMateria.materia_materia}">selected="selected"</c:if>>
+												${obj.materia}</option>
+										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
@@ -94,18 +121,10 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="exampleFormControlSelect1">Todas as
+									<label for="listarMateria">Todas as
 										matérias Informática</label> <select class="form-control"
-										id="exampleFormControlSelect1" name="subMateria">
-										<option>Escolha</option>
-										<option value="C#.NET">C#.NET</option>
-										<option value="Computador">Computador</option>
-										<option>Informática</option>
-										<option>CSS</option>
-										<option>DOS</option>
-										<option>iPhone</option>
-										<option>Linguagens de programação</option>
-										<option>Linux</option>
+										id="listarMateria" name="subMateria">
+										<option value="">Materia Específica</option>
 									</select>
 								</div>
 							</div>
@@ -195,7 +214,8 @@
 						<div class="form-group">
 							<div class="container">
 								<div class="row">
-									<input class="fot" name="file" type='file' onchange="readURL(this);" />
+									<input class="fot" name="file" type='file'
+										onchange="readURL(this);" />
 
 								</div>
 								<img id="blah" src="" alt="" />
@@ -294,7 +314,7 @@
 
 
 	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.3.1.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
 	<script

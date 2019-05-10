@@ -21,12 +21,14 @@ public class Curso {
 	@JoinColumn(name = "professor_idprofessor")
 	 private Professor professor;
 	
-	 @Column
-	 private String materia;
-	 @Column
+	@ManyToOne
+	@JoinColumn(name = "materia_idmateria")
+	 private Materia materia;
+	
+	@Column
 	 private String subMateria;
-	 
-	 @Column
+
+	@Column
 	 private String competencia;
 	 @Column
 	 private String ministra;
@@ -69,18 +71,8 @@ public class Curso {
 	public void setIdcurso(int idcurso) {
 		this.idcurso = idcurso;
 	}
-	public String getMateria() {
-		return materia;
-	}
-	public void setMateria(String materia) {
-		this.materia = materia;
-	}
-	public String getSubMateria() {
-		return subMateria;
-	}
-	public void setSubMateria(String subMateria) {
-		this.subMateria = subMateria;
-	}
+	
+	
 	public String getCompetencia() {
 		return competencia;
 	}
@@ -195,7 +187,19 @@ public class Curso {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-	 
+	 public Materia getMateria() {
+		return materia;
+	}
+	public void setMateria(Materia materia) {
+		this.materia = materia;
+	}
+	public String getSubMateria() {
+		return subMateria;
+	}
+	public void setSubMateria(String subMateria) {
+		this.subMateria = subMateria;
+	}
+	
 	 
 
 }

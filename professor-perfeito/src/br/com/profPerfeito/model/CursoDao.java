@@ -19,11 +19,11 @@ public class CursoDao {
 		manager.close();
 		factory.close();
 	}
-	public List<Curso> listar() {
+	public List<Curso> listarTelaInicial(int limit) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		List<Curso> lista = manager.createQuery("FROM Curso ORDER BY titulo").getResultList();
+		List<Curso> lista = manager.createQuery("FROM Curso ORDER BY titulo desc").setMaxResults(limit).getResultList();
 		manager.close();
 		factory.close();
 		return lista;

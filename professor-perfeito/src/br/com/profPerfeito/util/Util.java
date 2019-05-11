@@ -26,7 +26,7 @@ public class Util {
 		 String nomeArquivo = imagem.getOriginalFilename();
 		 try {
 		// Criando o diretório para armazenar o arquivo
-		String workspaceProjeto = "Users/Eduardo/git/professorPerfeito/professor-perfeito";
+		String workspaceProjeto = "\\Users\\Eduardo\\git\\professorPerfeito\\professor-perfeito";
 		File dir = new File(workspaceProjeto + "/WebContent/resources/img1");
 		if (!dir.exists()) {
 		 dir.mkdirs();

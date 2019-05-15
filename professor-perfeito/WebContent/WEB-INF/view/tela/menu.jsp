@@ -21,10 +21,10 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                     </button>
-                <a href="#" data-toggle="tooltip" data-placement="top" title="Professor Perfeito"><img src="<%=request.getContextPath()%>/resources/img1/logo2019.png"></a>
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Professor Perfeito"><img src="<%=request.getContextPath()%>/resources/img1/logo2019.png" style="height: 70px"></a>
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-right">                          
+                    <ul class="nav navbar-nav navbar-right" style="margin-top: 20px">                          
                           <li><a href="#">Professor</a></li>
                           <li><a href="#">Ajuda</a></li>
                           <li><a href="#">Fala conosco</a></li>

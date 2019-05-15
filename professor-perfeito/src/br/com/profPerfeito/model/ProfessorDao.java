@@ -45,4 +45,31 @@ public class ProfessorDao {
 		factory.close();
 		return obj;
 		}
+	
+	public Professor buscarProfessor(Professor professor) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = manager.createQuery("FROM Professor WHERE email LIKE :paramEmail AND senha LIKE :paramSenha");
+		query.setParameter("paramEmail", professor.getEmail());
+		query.setParameter("paramSenha", professor.getSenha());
+		List<Professor> registros = query.getResultList();
+		Professor obj = null;
+		if (!registros.isEmpty()) {
+		 obj = (Professor) registros.get(0);
+		}
+		manager.close();
+		factory.close();
+		return obj;
+		}	
+	public void alterar(Professor professor) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		manager.getTransaction().begin();
+		manager.merge(professor);
+		manager.getTransaction().commit();
+		manager.close();
+		factory.close();
+		}
 }

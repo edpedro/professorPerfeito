@@ -34,23 +34,29 @@ public class SistemaController {
 	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado, Model model,
 			HttpServletRequest request) {
 
-		// cadastrar o professor e redirecionar para tela de curso
-		if (estado.equalsIgnoreCase("p")) {
+		if (!estado.equalsIgnoreCase("p")) {
 
-			ProfessorDao dao = new ProfessorDao();
-			dao.salvar(professor);
+			// cadastrar aluno e redirecionar para tela inicial
+			AlunoDao dao = new AlunoDao();
+			dao.salvar(aluno);
 
-			// passa o id atual e enviar o controller do curso
-			request.getSession().setAttribute("professor", professor.getIdprofessor());
-
-			return new ModelAndView("redirect:tela/cadastroCurso");
+			return new ModelAndView("redirect:/");
 		}
 
-		// cadastrar aluno e redirecionar para tela inicial
-		AlunoDao dao = new AlunoDao();
-		dao.salvar(aluno);
+		// cadastrar o professor e redirecionar para tela de curso
 
-		return new ModelAndView("redirect:/");
+		ProfessorDao dao = new ProfessorDao();
+		dao.salvar(professor);
+
+		// passa o id atual e enviar o controller do curso
+		request.getSession().setAttribute("professor", professor.getIdprofessor());
+		request.getSession().setAttribute("nome", professor.getNome());
+		
+		
+		
+		return new ModelAndView("redirect:tela/cadastroCurso");
 	}
+
+	
 
 }

@@ -20,11 +20,40 @@
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos1.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos2.css">
+
+<script type="text/javascript">
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 4000);
+</script>
 
 </head>
 <body>
-	<!-- Menu -->
-	<c:import url="menu.jsp" />
+	<!-- Menu logado-->
+	<c:choose>
+		<c:when test="${not empty alunoLogado}">
+			<c:import url="menuAluno.jsp" />
+		</c:when>
+		<c:when test="${not empty professorLogado}">
+			<c:import url="menuProfessor.jsp" />
+		</c:when>
+		<c:otherwise>
+
+			<c:import url="menu.jsp" />
+
+		</c:otherwise>
+	</c:choose>
+	<c:if test="${not empty msg}">
+		<div class="alert alert-danger" role="alert"
+			style="width: 400px; height: 50px;">
+			<strong>${msg}</strong>
+		</div>
+	</c:if>
+
 	<!--BANNER-->
 	<div class="banner">
 		<div class="bg-color">
@@ -32,15 +61,26 @@
 				<div class="row">
 					<div class="banner-text text-center">
 						<div class="text-border">
-							<a href="#" data-target="#cadastro" data-toggle="modal" id="text-dec1"><h2 class="text-dec">DAR
-									AULAS</h2></a>
+							<c:choose>
+								<c:when test="${not empty alunoLogado}">
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de compartilhar ensino</h2></a>
+								</c:when>
+								<c:when test="${not empty professorLogado}">
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de compartilhar ensino</h2></a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" data-target="#cadastro" data-toggle="modal"
+										id="text-dec1"><h2 class="text-dec">DAR AULAS</h2></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="intro-para text-center quote">
 							<p class="big-text">Encontre e converse gratuitamente com
 								professores particulares de todo o Brasil</p>
 						</div>
 						<a href="#faculity-member" class="mouse-hover">
-							<div class="mouse " data-toggle="tooltip" data-placement="top" title="Listar professor"></div>
+							<div class="mouse " data-toggle="tooltip" data-placement="top"
+								title="Listar professor"></div>
 						</a>
 					</div>
 					<!-- BARRA DE BUSCAR-->
@@ -58,36 +98,40 @@
 		</div>
 	</div>
 	<!--CORPO-->
-	<!--PROFESSORES-->	
+	<!--PROFESSORES-->
 	<section id="faculity-member" class="section-padding acessibilidade">
-			<div class="container">
-				<div class="row">
-					<div class="header-section text-center">
-						<h2>Encontre um professor</h2>
-						<p>Converse gratuitamente com nossos professores e escolha o seu preferido.</p>
-						<hr class="bottom-line">
-					</div>
-					<!-- listar professor na tela inicial -->
-					<c:forEach var="curso" items="${listaCurso}">
+		<div class="container">
+			<div class="row">
+				<div class="header-section text-center">
+					<h2>Encontre um professor</h2>
+					<p>Converse gratuitamente com nossos professores e escolha o
+						seu preferido.</p>
+					<hr class="bottom-line">
+				</div>
+				<!-- listar professor na tela inicial -->
+				<c:forEach var="curso" items="${listaCurso}">
 					<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 							<div class="pm-staff-profile-image-wrapper text-center">
 								<div class="pm-staff-profile-image">
-									<img src="<%=request.getContextPath()%>/resources/img1/${curso.imagem}" alt="" class="img-thumbnail img-circle" />
+									<img
+										src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
+										alt="" class="img-thumbnail img-circle" style="margin-top: 1px;"
+										/>
 								</div>
 							</div>
 							<div class="pm-staff-profile-details text-center">
 								<p class="pm-staff-profile-name">${curso.professor.nome}</p>
-								<p class="pm-staff-profile-title">${curso.cidade}</p>
-
+								<p class="pm-staff-profile-title">${curso.professor.cidade}-
+									${curso.professor.estado}</p>
 								<p class="pm-staff-profile-bio">${curso.titulo}</p>
 							</div>
 						</div>
 					</div>
-					</c:forEach>							
-				</div>
+				</c:forEach>
 			</div>
-  </section>
+		</div>
+	</section>
 	<!-- CIDADES -->
 	<section id="work-shop" class="section-padding acessibilidade">
 		<div class="container">
@@ -100,7 +144,7 @@
 					<div class="service-box text-center">
 						<div class="icon-box">
 							<img
-								src="<%=request.getContextPath()%>/resources/img1/pernambuco.jpg">
+								src="<%=request.getContextPath()%>/resources/img1/pernambuco.jpg" style="width: 400px;">
 						</div>
 						<div class="icon-text">
 							<h4 class="ser-text">Pernambuco</h4>
@@ -317,7 +361,7 @@
 	<c:import url="rodape.jsp" />
 
 	<!-- Modal -->
-	
+
 	<!-- Modal Login-->
 	<c:import url="login.jsp" />
 	<!-- Modal Cadastro-->
@@ -325,7 +369,7 @@
 
 
 	<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
 	<script

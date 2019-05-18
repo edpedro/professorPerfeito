@@ -47,12 +47,17 @@
 
 		</c:otherwise>
 	</c:choose>
-	<c:if test="${not empty msg}">
+	<c:if test="${msg !=null}">
 		<div class="alert alert-danger" role="alert"
 			style="width: 400px; height: 50px;">
-			<strong>${msg}</strong>
+			<strong>${msg}</strong>			 
 		</div>
+		 <<c:out value = "${msg}"/>
+		   <c:remove var = "msg"/>
 	</c:if>
+	
+        
+         
 
 	<!--BANNER-->
 	<div class="banner">

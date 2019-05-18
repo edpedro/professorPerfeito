@@ -31,10 +31,10 @@ public class SistemaController {
 	}
 
 	@RequestMapping("save")
-	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado") String estado, Model model,
+	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado1") String estado1, Model model,
 			HttpServletRequest request) {
 
-		if (!estado.equalsIgnoreCase("p")) {
+		if (!estado1.equalsIgnoreCase("p")) {
 
 			// cadastrar aluno e redirecionar para tela inicial
 			AlunoDao dao = new AlunoDao();

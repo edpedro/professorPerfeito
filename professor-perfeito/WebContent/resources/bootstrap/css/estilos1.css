@@ -210,9 +210,29 @@ button {
 background-color:#5fcf80;
 }
 .form{
-	margin-top: 50px;
+	margin-top: 20px;
 }
 h3{
 	margin-bottom: 40px;
 }
-/*painel*/
+
+.setup-content{
+	margin-bottom: 10px;
+}
+.m2{
+	left: 15px;
+}
+.m3{
+	left: 40px;
+}
+.m4{
+	left: 15px;
+}
+img{
+  max-width:100px;
+  height:100px;
+  margin-top:20px;
+}
+.fot{
+    margin-top:20px;
+}

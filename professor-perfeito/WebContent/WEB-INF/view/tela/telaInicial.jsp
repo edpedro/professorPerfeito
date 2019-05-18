@@ -20,11 +20,45 @@
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos1.css">
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos2.css">
+
+<script type="text/javascript">
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 4000);
+</script>
 
 </head>
 <body>
-	<!-- Menu -->
-	<c:import url="menu.jsp" />
+	<!-- Menu logado-->
+	<c:choose>
+		<c:when test="${not empty alunoLogado}">
+			<c:import url="menuAluno.jsp" />
+		</c:when>
+		<c:when test="${not empty professorLogado}">
+			<c:import url="menuProfessor.jsp" />
+		</c:when>
+		<c:otherwise>
+
+			<c:import url="menu.jsp" />
+
+		</c:otherwise>
+	</c:choose>
+	<c:if test="${msg !=null}">
+		<div class="alert alert-danger" role="alert"
+			style="width: 400px; height: 50px;">
+			<strong>${msg}</strong>			 
+		</div>
+		 <<c:out value = "${msg}"/>
+		   <c:remove var = "msg"/>
+	</c:if>
+	
+        
+         
+
 	<!--BANNER-->
 	<div class="banner">
 		<div class="bg-color">
@@ -32,8 +66,18 @@
 				<div class="row">
 					<div class="banner-text text-center">
 						<div class="text-border">
-							<a href="#" id="text-dec1"><h2 class="text-dec">DAR
-									AULAS</h2></a>
+							<c:choose>
+								<c:when test="${not empty alunoLogado}">
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de compartilhar ensino</h2></a>
+								</c:when>
+								<c:when test="${not empty professorLogado}">
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de compartilhar ensino</h2></a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" data-target="#cadastro" data-toggle="modal"
+										id="text-dec1"><h2 class="text-dec">DAR AULAS</h2></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="intro-para text-center quote">
 							<p class="big-text">Encontre e converse gratuitamente com
@@ -69,62 +113,27 @@
 						seu preferido.</p>
 					<hr class="bottom-line">
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
-						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img
-									src="<%=request.getContextPath()%>/resources/img1/mentor.jpg"
-									alt="" class="img-thumbnail img-circle" />
+				<!-- listar professor na tela inicial -->
+				<c:forEach var="curso" items="${listaCurso}">
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
+							<div class="pm-staff-profile-image-wrapper text-center">
+								<div class="pm-staff-profile-image">
+									<img
+										src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
+										alt="" class="img-thumbnail img-circle" style="margin-top: 1px;"
+										/>
+								</div>
+							</div>
+							<div class="pm-staff-profile-details text-center">
+								<p class="pm-staff-profile-name">${curso.professor.nome}</p>
+								<p class="pm-staff-profile-title">${curso.professor.cidade}-
+									${curso.professor.estado}</p>
+								<p class="pm-staff-profile-bio">${curso.titulo}</p>
 							</div>
 						</div>
-						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Fernando</p>
-							<p class="pm-staff-profile-title">Recife (Pernambuco)</p>
-
-							<p class="pm-staff-profile-bio">Programação Web para
-								Designers - php, js, css e html. Formando em Eng da Computação
-								com Empresa na area de desenvolvimento de software a 3 anos em
-								Recife.</p>
-						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
-						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img
-									src="<%=request.getContextPath()%>/resources/img1/mentor.jpg"
-									alt="" class="img-thumbnail img-circle" />
-							</div>
-						</div>
-						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Carlos</p>
-							<p class="pm-staff-profile-title">Jaboatão dos Guararapes</p>
-
-							<p class="pm-staff-profile-bio">Aprenda PHP do jeito certo,
-								sem dor de cabeça na verdade é muito simples.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
-						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img
-									src="<%=request.getContextPath()%>/resources/img1/mentor.jpg"
-									alt="" class="img-thumbnail img-circle" />
-							</div>
-						</div>
-						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Ronaldo</p>
-							<p class="pm-staff-profile-title">Jaboatão dos Guararapes</p>
-
-							<p class="pm-staff-profile-bio">Professor de desenvolvimento
-								web php com frameworks e cms's (aplicações web e web services).</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</section>
@@ -140,7 +149,7 @@
 					<div class="service-box text-center">
 						<div class="icon-box">
 							<img
-								src="<%=request.getContextPath()%>/resources/img1/pernambuco.jpg">
+								src="<%=request.getContextPath()%>/resources/img1/pernambuco.jpg" style="width: 400px;">
 						</div>
 						<div class="icon-text">
 							<h4 class="ser-text">Pernambuco</h4>
@@ -357,137 +366,15 @@
 	<c:import url="rodape.jsp" />
 
 	<!-- Modal -->
+
 	<!-- Modal Login-->
-	<div class="modal fade" id="login" role="dialog">
-		<div class="modal-dialog modal-sm">
-
-			<!-- Modal content no 1-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title text-center form-title">Seja bem vindo</h4>
-				</div>
-				<div class="modal-body padtrbl">
-
-					<div class="login-box-body">
-						<a href="#" class="fa fa-facebook"></a> <span>ou</span> <a
-							href="#" class="fa fa-google"></a>
-						<p class="login-box-msg">Media social</p>
-						<div class="form-group">
-							<form name="" id="loginForm">
-								<div class="form-group has-feedback">
-									<!----- username -------------->
-									<input class="form-control" placeholder="Email" id="loginid"
-										type="text" autocomplete="off" /> <span
-										style="display: none; font-weight: bold; position: absolute; color: red; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-										id="span_loginid"></span>
-									<!---Alredy exists  ! -->
-									<span class="glyphicon glyphicon-user form-control-feedback"></span>
-								</div>
-								<div class="form-group has-feedback">
-									<!----- password -------------->
-									<input class="form-control" placeholder="Senha"
-										id="loginpsw" type="Senha" autocomplete="off" /> <span
-										style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-										id="span_loginpsw"></span>
-									<!---Alredy exists  ! -->
-									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="checkbox icheck">
-											<label> <input type="checkbox" id="loginrem">
-												Lembre de mim
-											</label>
-										</div>
-									</div>
-									<div class="col-xs-12">
-										<button type="submit" class="btn btn-green btn-block btn-flat"
-											onclick="userlogin()">Entrar</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+	<c:import url="login.jsp" />
 	<!-- Modal Cadastro-->
-	<div class="modal fade" id="cadastro" role="dialog">
-		<div class="modal-dialog modal-sm">
-			<!-- Modal content no 1-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title text-center form-title">CADASTRE-SE</h4>
-				</div>
-
-				<div class="modal-body padtrbl">
-
-					<div class="login-box-body">
-						<a href="#" class="fa fa-facebook"></a> <span>ou</span> <a
-							href="#" class="fa fa-google"></a>
-						<p class="login-box-msg"></p>
-						<div class="form-group">
-							<form name="" id="loginForm">
-								<div class="form-group has-feedback">
-									<!----- username -------------->
-									<input class="form-control" placeholder="Nome" id="loginid"
-										type="text" autocomplete="off" /> <span
-										style="display: none; font-weight: bold; position: absolute; color: red; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-										id="span_loginid"></span>
-									<!---Alredy exists  ! -->
-									<span class="glyphicon glyphicon-user form-control-feedback"></span>
-								</div>
-								<div class="form-group has-feedback">
-									<!----- password -------------->
-									<input class="form-control" placeholder="Email" id="loginpsw"
-										type="email" autocomplete="off" /> <span
-										style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-										id="span_loginpsw"></span>
-									<!---Alredy exists  ! -->
-									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-								</div>
-								<div class="form-group has-feedback">
-									<!----- password -------------->
-									<input class="form-control" placeholder="Senha" id="loginpsw"
-										type="password" autocomplete="off" /> <span
-										style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
-										id="span_loginpsw"></span>
-									<!---Alredy exists  ! -->
-									<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-								</div>
-								<div class="form-group has-feedback">
-									<div class="input-group ">
-										<div id="radioBtn" class="btn-group">
-											<span class="btn btn-green btn-sm active"
-												data-toggle="estado" data-value="A">Aluno</span> <span
-												class="btn btn-default btn-sm notActive"
-												data-toggle="estado" data-value="P">Professor</span>
-										</div>
-										<input type="hidden" name="estado" id="estado">
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<button type="submit" class="btn btn-green btn-block btn-flat"
-											onclick="userlogin()">Cadastrar</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+	<c:import url="cadastro.jsp" />
 
 
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
 	<script

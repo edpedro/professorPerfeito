@@ -3,6 +3,8 @@
     Author URL: https://profperfeito.com
 */
 
+
+
 body {
 	font-size: 15px;
     line-height: 1.52;
@@ -380,12 +382,13 @@ Work Shop
 /***********************************
 Mentor Team
 ************************************/
-.pm-staff-profile-image{
+.pm-staff-profile-image{ 
   width: 150px;
   height: 150px;
   background-color: #C6C6C6;
   border-radius: 50%;
   display: inline-block;
+
 }
 .pm-staff-profile-details {
     padding: 20px 20px;
@@ -834,4 +837,4 @@ Responsive media queries
 .fa-google {
   background: #dd4b39;
   color: white;
-}
+}}

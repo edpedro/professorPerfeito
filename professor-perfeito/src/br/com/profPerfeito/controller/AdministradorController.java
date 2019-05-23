@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.profPerfeito.model.Materia;
 import br.com.profPerfeito.model.MateriaDao;
@@ -23,12 +24,12 @@ public class AdministradorController {
 	}
 
 	@RequestMapping("/administrador/saveMateria")
-	public String saveMateria(Materia materia, Model model) {
+	public String saveMateria(Materia materia, Model model, RedirectAttributes redirectAttributes) {
 		MateriaDao dao = new MateriaDao();
 		dao.salvar(materia);
 
-		model.addAttribute("msg", "Materia cadastrada com sucesso!");
-		return "administrador/incluirMateria";
+		redirectAttributes.addFlashAttribute("msg", "Materia cadastrada com sucesso!");
+		return "redirect:addMateria";
 	}
 
 	// adionar sub materia materia
@@ -43,13 +44,13 @@ public class AdministradorController {
 	}
 
 	@RequestMapping("/administrador/saveSubMateria")
-	public String saveSubMateria(SubMateria subMateria, Model model) {
+	public String saveSubMateria(SubMateria subMateria, Model model, RedirectAttributes redirectAttributes) {
 		SubMateriaDao dao = new SubMateriaDao();
 		dao.salvar(subMateria);
 
-		model.addAttribute("msg", "Sub Materia cadastrada com sucesso!");
-		return "administrador/incluirSubMateria";
-		
+		redirectAttributes.addFlashAttribute("msg", "Sub Materia cadastrada com sucesso");
+		return "redirect:materia";
+
 	}
 
 }

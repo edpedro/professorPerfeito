@@ -36,6 +36,12 @@ public class Professor {
 	private String rua;
 	@Column
 	private String imagem;
+	@Column
+	private String celular;
+	@Column
+	private String telefone;
+	@Column
+	private String dataNascimento;
 
 	public int getIdprofessor() {
 		return idprofessor;
@@ -115,6 +121,30 @@ public class Professor {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 }

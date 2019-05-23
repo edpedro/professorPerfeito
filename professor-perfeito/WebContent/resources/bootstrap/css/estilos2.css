@@ -1,3 +1,4 @@
+
 a:focus,a:hover,a{
     outline:none;
     text-decoration: none;
@@ -601,7 +602,8 @@ header {
     }
     #navigation .navi a {
         font-size: 14px;
-        padding: 20px;
+        
+        
         text-align: center;
     }
     #navigation .navi i {
@@ -820,5 +822,34 @@ header {
 #menu1{
     margin-left: 10px;
     margin-top: 5px;
+    width: 
+    height
+}
+.img-circle1{
+  position: absolute;
+  top: 5px;
+  left:125px;
+  width: 140px;
+  height: 140px;
+  border-radius: 90px;
+  border: 1px green solid;
+  z-index: 100;
+  transition-property: all;
+  transition: .5s;
+}
+.img-circle1:hover{
+  height: 140px;
+  width: 140px;
+  border-radius: 67.5px;
+  border: 5px green solid;
+  top: 5px;
+  left:125px;
+}
+label.error {
+	color: red;
+	font-size: 14px;	
 }
 
+input.error {
+	border: 1px solid red;
+}	

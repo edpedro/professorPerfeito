@@ -23,6 +23,19 @@
 
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/additional-methods.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/localization/messages_pt_BR.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/custom.js"></script>
+
 <script type="text/javascript">
 <!--listar sub materia, AJAX E JSON -->
 	$(document)
@@ -67,13 +80,12 @@
 		});
 	}, 4000);
 </script>
-
 </head>
 <body>
 	<!-- Menu -->
 	<c:import url="menuSessão.jsp" />
 	<div class="alert alert-success" role="alert"
-		style="width: 200px; height: 50px;">		
+		style="width: 300px; height: 50px;">
 		<strong>${sessionScope.nome}</strong> Bem-vido!
 	</div>
 
@@ -82,7 +94,7 @@
 			<div class="stepwizard-row setup-panel">
 				<div class="stepwizard-step">
 					<a href="#step-1" type="button" class="btn btn btn-success"
-						disabled="disabled">1</a>
+						disabled="disabled" id="id1">1</a>
 					<p>Cursos</p>
 				</div>
 				<div class="stepwizard-step m2">
@@ -108,7 +120,8 @@
 			</div>
 		</div>
 		<form action="saveCurso" method="post" role="form" class="form"
-			enctype="multipart/form-data">
+			enctype="multipart/form-data" id="cursoFormulario"
+			name="cursoFormulario">
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
 					<div class="col-md-12">
@@ -117,7 +130,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="materia">Materia</label> <select
-										class="form-control" id="materia" name="materia">
+										class="form-control" id="materia" name="materia" id="materia">
 										<option value="">Materia</option>
 										<c:forEach items="${listaMateria}" var="obj">
 											<option value="${obj.idmateria}"
@@ -129,21 +142,19 @@
 								<div class="form-group">
 									<label class="control-label">Adicione outras
 										competências</label> <input maxlength="200" type="text"
-										name="competencia" required="required" class="form-control"
+										name="competencia" class="form-control" id="competencia"
 										placeholder="Adicione outras competências" />
 
 									<!-- id do professor -->
 									<input type="hidden" id="professor" name="professor"
 										value="${sessionScope.professor}">
-										
-										
-								</div>
 
+								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="listarMateria">Todas as matérias Específica</label>
-									<select class="form-control" id="listarMateria"
+									<label for="subMateria">Todas as matérias Específica</label>
+									<select class="form-control" id="subMateria"
 										name="subMateria">
 										<option value="">Materia Específica</option>
 									</select>
@@ -256,28 +267,46 @@
 								placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA"></textarea>
 						</div>
 						<div class="form-group">
-							<h3>Endereço</h3>
+							<h3>DADOS</h3>
+							<div class="col-md-12">
+								<div class="form-group col-md-3">
+									<label for="inputCEP">Telefone</label> <input type="text"
+										class="form-control" name="telefone">
+								</div>
+								<div class="form-group col-md-3">
+									<label for="inputCEP">Celular</label> <input type="text"
+										class="form-control" name="celular">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group col-md-3">
+									<label for="inputCEP">Data de nascimento</label> <input
+										type="date" class="form-control" id="inputCEP"
+										name="dataNascimento">
+								</div>
+							</div>
+							<h3>ENDEREÇO</h3>
 							<div class="form-group col-md-2">
-								<label for="inputCEP">CEP</label> <input type="text" name="cep"
-									class="form-control" id="inputCEP" >
+								<label for="inputCEP">CEP</label> <input type="text"
+									class="form-control" id="inputCEP" name="cep">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="inputCity">Cidade</label> <input type="text"
-									name="cidade" class="form-control" id="inputCity" >
+									class="form-control" id="inputCity" name="cidade">
 							</div>
 							<div class="form-group col-md-2">
 								<label for="inputCity">Estado</label> <input type="text"
-									name="estado" class="form-control" id="inputCity" >
+									class="form-control" id="inputCity" name="uf">
 							</div>
 							<div class="form-row">
 								<div class="form-group  col-md-6">
 									<label for="inputAddress">Rua</label> <input type="text"
-										name="rua" class="form-control" id="inputAddress" 
-										placeholder="EX Rua dos Bobos, nº 0">
+										class="form-control" id="inputAddress"
+										placeholder="EX Rua dos Bobos, nº 0" name="rua">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputCity">Bairro</label> <input type="text"
-										name="bairro" class="form-control" id="inputCity">
+										class="form-control" id="inputCity" name="bairro">
 								</div>
 							</div>
 						</div>
@@ -294,13 +323,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">O valor pela hora</label> <input
-										maxlength="200" type="text" required="required"
-										class="form-control" placeholder="R$" name="valorHora" />
+										maxlength="200" type="text" class="form-control"
+										placeholder="R$" name="valorHora" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Adicionar uma taxa de
 										deslocamento</label> <input maxlength="200" type="text"
-										required="required" class="form-control" placeholder="R$ 20"
+										class="form-control" placeholder="R$ 20"
 										name="valorDeslocamento" />
 								</div>
 							</div>
@@ -308,14 +337,13 @@
 								<div class="form-group">
 									<label class="control-label">indicar um valor diferente
 										para aulas por webcam</label> <input maxlength="200" type="text"
-										required="required" class="form-control" placeholder="R$ 5"
-										name="valorWeb" />
+										class="form-control" placeholder="R$ 5" name="valorWeb" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Propor um valor
 										decrescente para um pacote de aulas</label> <input maxlength="200"
-										type="text" required="required" class="form-control"
-										placeholder="R$ 10" name="valorPacote" />
+										type="text" class="form-control" placeholder="R$ 10"
+										name="valorPacote" />
 								</div>
 							</div>
 							<button class="btn btn-success nextBtn btn-lg pull-right"
@@ -327,20 +355,5 @@
 
 		</form>
 	</div>
-
-
-
-
-
-
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.3.1.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/custom.js"></script>
-
 </body>
 </html>

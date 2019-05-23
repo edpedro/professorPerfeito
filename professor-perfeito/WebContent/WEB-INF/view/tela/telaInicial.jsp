@@ -23,14 +23,64 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos2.css">
 
+
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/additional-methods.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/localization/messages_pt_BR.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/custom.js"></script>
+
+
 <script type="text/javascript">
 	window.setTimeout(function() {
 		$(".alert").fadeTo(500, 0).slideUp(500, function() {
 			$(this).remove();
 		});
 	}, 4000);
+	
+	
+	$(document).ready(function() {
+		$("#loginForm").validate({
+			rules : {
+				email : {
+					required : true,
+					email : true,
+					is_string: true
+				},
+				senha : {
+					required : true
+				}
+			}
+		})
+		$("#cadastroForm").validate({
+			rules : {
+				nome : {
+					required : true,
+					maxlength : 50,					
+					minWords : 2,
+					
+				},
+				email : {
+					required : true,
+					email : true					
+				},
+				senha : {
+					required : true,
+					minlength : 6					
+				}
+			}
+		})
+	})
 </script>
-
 </head>
 <body>
 	<!-- Menu logado-->
@@ -50,14 +100,14 @@
 	<c:if test="${msg !=null}">
 		<div class="alert alert-danger" role="alert"
 			style="width: 400px; height: 50px;">
-			<strong>${msg}</strong>			 
+			<strong>${msg}</strong>
 		</div>
-		 <<c:out value = "${msg}"/>
-		   <c:remove var = "msg"/>
+		 <<c:out value="${msg}" />
+		<c:remove var="msg" />
 	</c:if>
-	
-        
-         
+
+
+
 
 	<!--BANNER-->
 	<div class="banner">
@@ -68,10 +118,12 @@
 						<div class="text-border">
 							<c:choose>
 								<c:when test="${not empty alunoLogado}">
-									<a id="text-dec1"><h2 class="text-dec">Melhor site de compartilhar ensino</h2></a>
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de
+											compartilhar ensino</h2></a>
 								</c:when>
 								<c:when test="${not empty professorLogado}">
-									<a id="text-dec1"><h2 class="text-dec">Melhor site de compartilhar ensino</h2></a>
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de
+											compartilhar ensino</h2></a>
 								</c:when>
 								<c:otherwise>
 									<a href="#" data-target="#cadastro" data-toggle="modal"
@@ -121,8 +173,8 @@
 								<div class="pm-staff-profile-image">
 									<img
 										src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
-										alt="" class="img-thumbnail img-circle" style="margin-top: 1px;"
-										/>
+										alt="" class="img-thumbnail img-circle"
+										style="margin-top: 1px;" />
 								</div>
 							</div>
 							<div class="pm-staff-profile-details text-center">
@@ -149,7 +201,8 @@
 					<div class="service-box text-center">
 						<div class="icon-box">
 							<img
-								src="<%=request.getContextPath()%>/resources/img1/pernambuco.jpg" style="width: 400px;">
+								src="<%=request.getContextPath()%>/resources/img1/pernambuco.jpg"
+								style="width: 400px;">
 						</div>
 						<div class="icon-text">
 							<h4 class="ser-text">Pernambuco</h4>
@@ -371,15 +424,5 @@
 	<c:import url="login.jsp" />
 	<!-- Modal Cadastro-->
 	<c:import url="cadastro.jsp" />
-
-
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.easing.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/bootstrap/js/custom.js"></script>
 </body>
 </html>

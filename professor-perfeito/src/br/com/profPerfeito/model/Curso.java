@@ -44,7 +44,6 @@ public class Curso {
 	private String metodologia;
 	@Column
 	private String apresentacao;
-
 	@Column
 	private double valorHora;
 	@Column

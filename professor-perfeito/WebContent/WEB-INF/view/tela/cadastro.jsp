@@ -1,7 +1,7 @@
 <div class="modal fade" id="cadastro" role="dialog">
 	<div class="modal-dialog modal-sm">
 		<!-- Modal content no 1-->
-		<div class="modal-content">
+		<div class="modal-content" style="bottom: 150px;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title text-center form-title">CADASTRE-SE</h4>
@@ -14,33 +14,27 @@
 						class="fa fa-google"></a>
 					<p class="login-box-msg"></p>
 					<div class="form-group">
-						<form action="save" method="POST" id="loginForm">
+						<form action="save" method="POST" id="cadastroForm">
 							<div class="form-group has-feedback">
 								<!----- Nome -------------->
-								<input class="form-control" placeholder="Nome" id="loginid" name="nome"
-									type="text" autocomplete="off" /> <span
+								<input class="form-control" placeholder="Nome" id="loginid"
+									name="nome" type="text" autocomplete="off" /> <span
 									style="display: none; font-weight: bold; position: absolute; color: red; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 									id="span_loginid"></span>
-								<!---Alredy exists  ! -->
-								<span class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<!----- Email -------------->
-								<input class="form-control" placeholder="Email" id="loginpsw" name="email"
-									type="email" autocomplete="off" /> <span
+								<input class="form-control" placeholder="Email" id="loginpsw"
+									name="email" type="email" autocomplete="off" /> <span
 									style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 									id="span_loginpsw"></span>
-								<!---Alredy exists  ! -->
-								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<!----- Senha -------------->
-								<input class="form-control" placeholder="Senha" id="loginpsw" name="senha"
-									type="password" autocomplete="off" /> <span
+								<input class="form-control" placeholder="Senha" id="loginpsw"
+									name="senha" type="password" autocomplete="off" /> <span
 									style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 									id="span_loginpsw"></span>
-								<!---Alredy exists  ! -->
-								<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<div class="input-group ">

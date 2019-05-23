@@ -236,3 +236,11 @@ img{
 .fot{
     margin-top:20px;
 }
+label.error {
+	color: red;
+	font-size: 14px;	
+}
+
+input.error {
+	border: 1px solid red;
+}

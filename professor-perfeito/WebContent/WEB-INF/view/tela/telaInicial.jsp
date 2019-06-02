@@ -61,7 +61,7 @@
 				}
 			}
 		})
-		$("#cadastroForm").validate({
+		$("#cadastroForm").validate({			
 			rules : {
 				nome : {
 					required : true,
@@ -86,14 +86,15 @@
 	<!-- Menu logado-->
 	<c:choose>
 		<c:when test="${not empty alunoLogado}">
-			<c:import url="menuAluno.jsp" />
+			<c:import url="menu/menuA.jsp" />
 		</c:when>
 		<c:when test="${not empty professorLogado}">
-			<c:import url="menuProfessor.jsp" />
+		<c:import url="menu/menuP.jsp" />
+		
 		</c:when>
 		<c:otherwise>
 
-			<c:import url="menu.jsp" />
+			<c:import url="menu/menu.jsp" />
 
 		</c:otherwise>
 	</c:choose>
@@ -143,9 +144,10 @@
 					<!-- BARRA DE BUSCAR-->
 					<div class="col-md-12">
 						<div class="cta-2-form text-center">
-							<form action="#" method="post" id="workshop-newsletter-form">
+							<form action="busrcarCurso" method="post" id="workshop-newsletter-form">
 								<input name="" placeholder="Qual matéria deseja aprende?"
-									type="email"> <input class="cta-2-form-submit-btn"
+									type="text" required />
+								</div> <input class="cta-2-form-submit-btn"
 									value="Buscar" type="submit">
 							</form>
 						</div>
@@ -406,7 +408,7 @@
 					<h2 class="text-center">Encontre o professor perfeito</h2>
 					<div class="cta-2-form text-center">
 						<form action="#" method="post" id="workshop-newsletter-form">
-							<input name="" placeholder="Ex: matemática" type="email">
+							<input name="" placeholder="Ex: matemática" type="text">
 							<input class="cta-2-form-submit-btn" value="Buscar" type="submit">
 						</form>
 					</div>

@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class CursoDao {
-	
+
 	private static final String PERSISTENCE_UNIT = "profPerfeito";
 
 	public void salvar(Curso curso) {
@@ -20,26 +20,40 @@ public class CursoDao {
 		manager.close();
 		factory.close();
 	}
+
 	public List<Curso> listarTelaInicial(int limit) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		List<Curso> lista = manager.createQuery("FROM Curso ORDER BY titulo desc").setMaxResults(limit).getResultList();
 		manager.close();
 		factory.close();
 		return lista;
-		}
+	}
+
 	public Curso buscarPorId(int id) {
 		Curso obj = null;
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		obj = manager.find(Curso.class, id);
 		manager.close();
 		factory.close();
 		return obj;
-		}
+	}
 	
-	
-	
+	public List<Curso> listarCursoPerfil(int cursoPerfil) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		
+		int perfil = cursoPerfil;
+		query = manager.createQuery("FROM Curso WHERE professor_idprofessor LIKE :paramCursoPerfil");
+		query.setParameter("paramCursoPerfil", "%" + perfil + "%");
+		
+		List<Curso> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}	
+
 }

@@ -72,6 +72,7 @@
 
 						$("#materia").change(function() {
 							carregaTabelaJSon();
+						
 						});
 					});
 	window.setTimeout(function() {
@@ -79,15 +80,32 @@
 			$(this).remove();
 		});
 	}, 4000);
+	</script>
+	
+	<script type="text/javascript">	
+	$("#cursoFormulario").validate({
+		
+		rules : {
+			competencia : {
+				required : true,
+				rangeWords: true
+				
+			}
+		}
+	})
+})
 </script>
 </head>
 <body>
 	<!-- Menu -->
-	<c:import url="menuSessão.jsp" />
+	<c:import url="menu/menuSessão.jsp" />
+	
+	<c:if test="${not empty msg}">		
 	<div class="alert alert-success" role="alert"
 		style="width: 300px; height: 50px;">
-		<strong>${sessionScope.nome}</strong> Bem-vido!
+		<strong>${msg}</strong> Bem-vido!
 	</div>
+	</c:if>	
 
 	<div class="container">
 		<div class="stepwizard">
@@ -120,8 +138,7 @@
 			</div>
 		</div>
 		<form action="saveCurso" method="post" role="form" class="form"
-			enctype="multipart/form-data" id="cursoFormulario"
-			name="cursoFormulario">
+			enctype="multipart/form-data" id="cursoFormulario" name="cursoFormulario">
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
 					<div class="col-md-12">
@@ -153,9 +170,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="subMateria">Todas as matérias Específica</label>
-									<select class="form-control" id="subMateria"
-										name="subMateria">
+									<label for="listarMateria">Todas as matérias Específica</label> <select
+										class="form-control" id="listarMateria" name="subMateria">
 										<option value="">Materia Específica</option>
 									</select>
 								</div>
@@ -296,7 +312,7 @@
 							</div>
 							<div class="form-group col-md-2">
 								<label for="inputCity">Estado</label> <input type="text"
-									class="form-control" id="inputCity" name="uf">
+									class="form-control" id="inputCity" name="Estado">
 							</div>
 							<div class="form-row">
 								<div class="form-group  col-md-6">
@@ -355,5 +371,7 @@
 
 		</form>
 	</div>
+	
+	
 </body>
 </html>

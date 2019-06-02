@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.profPerfeito.model.Aluno;
 import br.com.profPerfeito.model.AlunoDao;
@@ -32,7 +33,7 @@ public class SistemaController {
 
 	@RequestMapping("save")
 	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado1") String estado1, Model model,
-			HttpServletRequest request) {
+			HttpServletRequest request,RedirectAttributes redirectAttributes) {
 
 		if (!estado1.equalsIgnoreCase("p")) {
 
@@ -50,8 +51,8 @@ public class SistemaController {
 
 		// passa o id atual e enviar o controller do curso
 		request.getSession().setAttribute("professor", professor.getIdprofessor());
-		request.getSession().setAttribute("nome", professor.getNome());
 		
+		redirectAttributes.addFlashAttribute("msg", professor.getNome());
 		
 		
 		return new ModelAndView("redirect:tela/cadastroCurso");

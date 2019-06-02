@@ -339,7 +339,7 @@ Cta
     margin: 0 auto;
     line-height: 34px !important;
 }
-.cta-2-form input[type="email"] {
+.cta-2-form input[type="text"] {
     border: 0px solid #CCC;
     padding: 20px 40px;
     font-size: 18px;
@@ -755,7 +755,7 @@ Responsive media queries
     .cta-2-form-submit-btn {
     font-size: 10px;
     }
-    .cta-2-form input[type="email"] {
+    .cta-2-form input[type="text"] {
     padding: 13px 10px;
     font-size: 10px;
     min-width: 187px;

@@ -1,11 +1,8 @@
 package br.com.profPerfeito.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -30,51 +27,45 @@ import br.com.profPerfeito.util.Util;
 
 @Controller
 public class CursoController {
-	
-	//listar materia
+
+	// listar materia
 	@RequestMapping("/tela/cadastroCurso")
-	public String curso(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public String curso(Model model) {
+
 		SubMateriaDao dao = new SubMateriaDao();
 		List<SubMateria> listaSubMateria = dao.listar(null);
 		model.addAttribute("listaSubMateria", listaSubMateria);
 
 		model.addAttribute("listaMateria", new MateriaDao().listar());
-		
-		int id = (int) request.getSession().getAttribute("professor");
-		
-		ProfessorDao dao1 = new ProfessorDao();
-		Professor professor1 = dao1.buscarPorId(id);
-		model.addAttribute("professor1", professor1);
-		
-		
+
 		return "tela/cadastroCurso";
 	}
-	
-	//listar subMateria - ajax
+
+	// listar subMateria - ajax
 	@RequestMapping(value = "/tela/filter", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String filtrarMateria(@RequestParam Integer idMateria, Model model) {
-		
+
 		SubMateriaDao dao = new SubMateriaDao();
-		List<SubMateria> listaSubMateria = dao.listar(idMateria);		
+		List<SubMateria> listaSubMateria = dao.listar(idMateria);
 		return new Gson().toJson(listaSubMateria);
 	}
-	
 
 	@RequestMapping("tela/saveCurso")
-	public ModelAndView save1(Curso curso, Professor professor, @RequestParam("file") MultipartFile imagem) {
-		//IMPLEMENTAÇÃO DA IMAGEM
+	public ModelAndView save1(Curso curso, Professor professor, @RequestParam("file") MultipartFile imagem,HttpServletRequest request) {
+		// IMPLEMENTAÇÃO DA IMAGEM
 		if (Util.fazerUploadImagem(imagem)) {
 			professor.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
 		}
-		
-		
 
 		CursoDao dao = new CursoDao();
 		dao.salvar(curso);
 		
+		
+
 		ProfessorDao dao1 = new ProfessorDao();
 		dao1.alterar(professor);
+		
+		request.getSession().setAttribute("idCurso", curso.getIdcurso());
 		return new ModelAndView("redirect:perfil");
 
 	}

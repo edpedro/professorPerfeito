@@ -41,8 +41,9 @@ public class AcesoController {
 
 		if (professorLogado != null) {
 			session.setAttribute("professorLogado", professorLogado);
+			redirectAttributes.addFlashAttribute("msg", "logado com sucesso!");
 			
-			return "tela/telaInicial";
+			return "redirect:/";
 		}	
 		
 		redirectAttributes.addFlashAttribute("msg", "login ou senha invalida");

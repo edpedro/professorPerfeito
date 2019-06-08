@@ -72,4 +72,16 @@ public class ProfessorDao {
 		manager.close();
 		factory.close();
 		}
+	public List<Professor> buscarEmailProfessor(Professor professor) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;	
+		query = manager.createQuery("FROM Professor WHERE email LIKE :paramEmail");
+		query.setParameter("paramEmail", "%" + professor.getEmail() + "%");		
+		List<Professor> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}
 }

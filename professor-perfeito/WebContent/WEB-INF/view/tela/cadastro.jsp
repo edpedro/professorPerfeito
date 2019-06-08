@@ -36,17 +36,18 @@
 									style="display: none; font-weight: bold; position: absolute; color: grey; position: absolute; padding: 4px; font-size: 11px; background-color: rgba(128, 128, 128, 0.26); z-index: 17; right: 27px; top: 5px;"
 									id="span_loginpsw"></span>
 							</div>
-							<div class="form-group has-feedback">
-								<div class="input-group ">
-									<div id="radioBtn" class="btn-group">
-										<span class="btn btn-green btn-sm active" data-toggle="estado"
-											data-value="A">Aluno</span> <span
-											class="btn btn-default btn-sm notActive" data-toggle="estado"
-											data-value="P">Professor</span>
-									</div>
-									<input type="hidden" name="estado1" id="estado">
-								</div>
-							</div>
+							<div class="radio-btn-group">
+                        <div class="radio">
+                          <input type="radio" name="radio" value="A" checked="checked"  id="click_me"/>
+                          <label for="click_me">Aluno</label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="radio" value="P"  id="or_me"/>
+                          <label for="or_me">Professor</label>
+                        </div>
+                      </div>    
+							
+							
 							<div class="row">
 								<div class="col-xs-12">
 									<button type="submit" class="btn btn-green btn-block btn-flat"

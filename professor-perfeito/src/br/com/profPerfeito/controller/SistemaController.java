@@ -32,32 +32,55 @@ public class SistemaController {
 	}
 
 	@RequestMapping("save")
-	public ModelAndView save(Professor professor, Aluno aluno, @RequestParam("estado1") String estado1, Model model,
-			HttpServletRequest request,RedirectAttributes redirectAttributes) {
+	public ModelAndView save(Aluno aluno, Professor professor, @RequestParam("radio") String radio, Model model,
+			HttpServletRequest request, RedirectAttributes redirectAttributes) {
 
-		if (!estado1.equalsIgnoreCase("p")) {
+		if (!radio.equalsIgnoreCase("P")) {
 
-			// cadastrar aluno e redirecionar para tela inicial
-			AlunoDao dao = new AlunoDao();
-			dao.salvar(aluno);
+			// verificar ser ja existem o EMAIL
+			AlunoDao dao2 = new AlunoDao();
+			List<Aluno> alunoEmail = dao2.buscarEmailAluno(aluno);
 
+			if (alunoEmail.size() <= 0) {
+
+				// Cadastrar o aluno
+				AlunoDao dao = new AlunoDao();
+				dao.salvar(aluno);
+				redirectAttributes.addFlashAttribute("msg", "Cadastrado com sucesso!");
+				return new ModelAndView("redirect:/");
+			}
+			redirectAttributes.addFlashAttribute("msg1", "Email ja está em uso");
 			return new ModelAndView("redirect:/");
+
+		} else {
+
+			// verificar ser ja existem o EMAIL
+			ProfessorDao dao3 = new ProfessorDao();
+			List<Professor> professorEmail = dao3.buscarEmailProfessor(professor);
+
+			if (professorEmail.size() <= 0) {
+
+				// Cadastrar o professor
+				ProfessorDao dao = new ProfessorDao();
+				dao.salvar(professor);
+
+				// passa o id atual e enviar o controller do curso
+				request.getSession().setAttribute("professor", professor.getIdprofessor());
+
+				// passa o nome atual e enviar o controller do curso
+				redirectAttributes.addFlashAttribute("msg", professor.getNome());
+
+				return new ModelAndView("redirect:tela/cadastroCurso");
+
+			} else {
+				// enviar messagem para telas
+				redirectAttributes.addFlashAttribute("msg1", "Email ja está em uso");
+
+				return new ModelAndView("redirect:/");
+			}
+
 		}
 
-		// cadastrar o professor e redirecionar para tela de curso
-
-		ProfessorDao dao = new ProfessorDao();
-		dao.salvar(professor);
-
-		// passa o id atual e enviar o controller do curso
-		request.getSession().setAttribute("professor", professor.getIdprofessor());
-		
-		redirectAttributes.addFlashAttribute("msg", professor.getNome());
-		
-		
-		return new ModelAndView("redirect:tela/cadastroCurso");
 	}
-
-	
 
 }

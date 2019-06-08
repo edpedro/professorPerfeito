@@ -37,4 +37,32 @@ public class AlunoDao {
 		factory.close();
 		return obj;
 		}
+	public Aluno buscarEmailAlun(Aluno aluno) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = manager.createQuery("FROM Aluno WHERE email LIKE :paramEmail AND senha LIKE :paramSenha");
+		query.setParameter("paramEmail", aluno.getEmail());
+		query.setParameter("paramSenha", aluno.getSenha());
+		List<Aluno> registros = query.getResultList();
+		Aluno obj = null;
+		if (!registros.isEmpty()) {
+		 obj = (Aluno) registros.get(0);
+		}
+		manager.close();
+		factory.close();
+		return obj;
+		}
+	public List<Aluno> buscarEmailAluno(Aluno aluno) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;	
+		query = manager.createQuery("FROM Aluno WHERE email LIKE :paramEmail");
+		query.setParameter("paramEmail", "%" + aluno.getEmail() + "%");		
+		List<Aluno> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}
 }

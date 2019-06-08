@@ -39,21 +39,37 @@ public class CursoDao {
 		factory.close();
 		return obj;
 	}
-	
+
 	public List<Curso> listarCursoPerfil(int cursoPerfil) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-		
+
 		int perfil = cursoPerfil;
 		query = manager.createQuery("FROM Curso WHERE professor_idprofessor LIKE :paramCursoPerfil");
 		query.setParameter("paramCursoPerfil", "%" + perfil + "%");
-		
+
 		List<Curso> lista = query.getResultList();
 		manager.close();
 		factory.close();
 		return lista;
-		}	
+	}
+
+	public List<Curso> buscar(String curso) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+
+		String buscar = curso;
+
+		query = manager.createQuery("FROM Curso WHERE titulo LIKE :paramTitulo OR subMateria LIKE:paramTitulo");
+		query.setParameter("paramTitulo", "%" + buscar + "%");
+
+		List<Curso> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+
+	}
 
 }

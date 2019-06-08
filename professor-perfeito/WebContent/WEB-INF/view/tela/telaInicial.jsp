@@ -46,36 +46,35 @@
 			$(this).remove();
 		});
 	}, 4000);
-	
-	
+
 	$(document).ready(function() {
 		$("#loginForm").validate({
 			rules : {
 				email : {
 					required : true,
 					email : true,
-					is_string: true
+					is_string : true
 				},
 				senha : {
 					required : true
 				}
 			}
 		})
-		$("#cadastroForm").validate({			
+		$("#cadastroForm").validate({
 			rules : {
 				nome : {
 					required : true,
-					maxlength : 50,					
+					maxlength : 50,
 					minWords : 2,
-					
+
 				},
 				email : {
 					required : true,
-					email : true					
+					email : true
 				},
 				senha : {
 					required : true,
-					minlength : 6					
+					minlength : 6
 				}
 			}
 		})
@@ -89,8 +88,8 @@
 			<c:import url="menu/menuA.jsp" />
 		</c:when>
 		<c:when test="${not empty professorLogado}">
-		<c:import url="menu/menuP.jsp" />
-		
+			<c:import url="menu/menuP.jsp" />
+
 		</c:when>
 		<c:otherwise>
 
@@ -98,58 +97,64 @@
 
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${msg1 !=null}">
+	<div class="alert alert-danger" role="alert"
+		style="width: 400px; height: 50px;">
+		<strong>${msg1}</strong>
+	</div>
+	</c:if>
 	<c:if test="${msg !=null}">
-		<div class="alert alert-danger" role="alert"
-			style="width: 400px; height: 50px;">
+		<div class="alert alert-success" role="alert"
+			style="width: 300px; height: 50px;">
 			<strong>${msg}</strong>
 		</div>
-		 <<c:out value="${msg}" />
-		<c:remove var="msg" />
 	</c:if>
 
 
-
-
-	<!--BANNER-->
-	<div class="banner">
-		<div class="bg-color">
-			<div class="container">
-				<div class="row">
-					<div class="banner-text text-center">
-						<div class="text-border">
-							<c:choose>
-								<c:when test="${not empty alunoLogado}">
-									<a id="text-dec1"><h2 class="text-dec">Melhor site de
-											compartilhar ensino</h2></a>
-								</c:when>
-								<c:when test="${not empty professorLogado}">
-									<a id="text-dec1"><h2 class="text-dec">Melhor site de
-											compartilhar ensino</h2></a>
-								</c:when>
-								<c:otherwise>
-									<a href="#" data-target="#cadastro" data-toggle="modal"
-										id="text-dec1"><h2 class="text-dec">DAR AULAS</h2></a>
-								</c:otherwise>
-							</c:choose>
+		<!--BANNER-->
+		<div class="banner">
+			<div class="bg-color">
+				<div class="container">
+					<div class="row">
+						<div class="banner-text text-center">
+							<div class="text-border">
+								<c:choose>
+									<c:when test="${not empty alunoLogado}">
+										<a id="text-dec1"><h2 class="text-dec">Melhor site de
+												compartilhar ensino</h2></a>
+									</c:when>
+									<c:when test="${not empty professorLogado}">
+										<a id="text-dec1"><h2 class="text-dec">Melhor site de
+												compartilhar ensino</h2></a>
+									</c:when>
+									<c:otherwise>
+										<a href="#" data-target="#cadastro" data-toggle="modal"
+											id="text-dec1"><h2 class="text-dec">DAR AULAS</h2></a>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="intro-para text-center quote">
+								<p class="big-text">Encontre e converse gratuitamente com
+									professores particulares de todo o Brasil</p>
+							</div>
+							<a href="#faculity-member" class="mouse-hover">
+								<div class="mouse " data-toggle="tooltip" data-placement="top"
+									title="Listar professor"></div>
+							</a>
 						</div>
-						<div class="intro-para text-center quote">
-							<p class="big-text">Encontre e converse gratuitamente com
-								professores particulares de todo o Brasil</p>
-						</div>
-						<a href="#faculity-member" class="mouse-hover">
-							<div class="mouse " data-toggle="tooltip" data-placement="top"
-								title="Listar professor"></div>
-						</a>
-					</div>
-					<!-- BARRA DE BUSCAR-->
-					<div class="col-md-12">
-						<div class="cta-2-form text-center">
-							<form action="busrcarCurso" method="post" id="workshop-newsletter-form">
-								<input name="" placeholder="Qual matéria deseja aprende?"
-									type="text" required />
-								</div> <input class="cta-2-form-submit-btn"
-									value="Buscar" type="submit">
-							</form>
+
+						<!-- BARRA DE BUSCAR-->
+						<div class="col-md-12">
+							<div class="cta-2-form text-center">
+								<form action="tela/buscarCurso" method="get"
+									id="workshop-newsletter-form">
+									<input name="buscar" placeholder="Qual matéria deseja aprende?"
+										type="text" id="email"
+										style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;"
+										required> <input class="cta-2-form-submit-btn"
+										value="Buscar" type="submit">
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -408,7 +413,8 @@
 					<h2 class="text-center">Encontre o professor perfeito</h2>
 					<div class="cta-2-form text-center">
 						<form action="#" method="post" id="workshop-newsletter-form">
-							<input name="" placeholder="Ex: matemática" type="text">
+							<input name="" placeholder="Ex: matemática" type="text"
+								style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;">
 							<input class="cta-2-form-submit-btn" value="Buscar" type="submit">
 						</form>
 					</div>

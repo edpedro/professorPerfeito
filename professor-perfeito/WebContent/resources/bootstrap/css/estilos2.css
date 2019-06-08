@@ -785,13 +785,13 @@ header {
 .circle3 {
   background-color: #aaa;
   border-radius: 50%;
-  width: 200px;
+
   height: 200px;
   overflow: hidden;
   position: relative;   
   top:0px;
-  left: 0px;    
-      
+  left: 0px;   
+    
 }
 
 .circle3 img {

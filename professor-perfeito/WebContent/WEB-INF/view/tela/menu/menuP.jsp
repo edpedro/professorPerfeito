@@ -23,7 +23,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a href="#" data-toggle="tooltip" data-placement="top"
+			<a href="<%=request.getContextPath()%>/" data-toggle="tooltip" data-placement="top"
 				title="Professor Perfeito"><img
 				src="<%=request.getContextPath()%>/resources/img1/logo2019.png"
 				style="height: 70px"></a>
@@ -51,9 +51,10 @@
 				</ul>
 			</div>
 			<ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
-				<li><a href="#">Professor</a></li>
-				<li><a href="#">Ajuda</a></li>
-				<li><a href="#">Fala conosco</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Inicio</a></li>
+				<li><a href="<%=request.getContextPath()%>/buscarCurso">Professor</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Ajuda</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Fala conosco</a></li>
 
 			</ul>
 

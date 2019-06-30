@@ -3,16 +3,18 @@ package br.com.profPerfeito.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 
@@ -51,22 +53,29 @@ public class CursoController {
 	}
 
 	@RequestMapping("tela/saveCurso")
-	public ModelAndView save1(Curso curso, Professor professor, @RequestParam("file") MultipartFile imagem,HttpServletRequest request) {
+	public String save1(@Valid Curso curso, Professor professor, @RequestParam("file") MultipartFile imagem,
+			HttpServletRequest request, BindingResult result, RedirectAttributes redirectAttributes) {
 		// IMPLEMENTAÇÃO DA IMAGEM
+		
+		if (result.hasErrors()) {
+			return "tela/cadastroCurso";
+		}
+		
 		if (Util.fazerUploadImagem(imagem)) {
 			professor.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
 		}
+		
 
 		CursoDao dao = new CursoDao();
 		dao.salvar(curso);
-		
-		
 
 		ProfessorDao dao1 = new ProfessorDao();
 		dao1.alterar(professor);
-		
+
 		request.getSession().setAttribute("idCurso", curso.getIdcurso());
-		return new ModelAndView("redirect:perfil");
+
+		redirectAttributes.addFlashAttribute("msg", "Cadastrado com sucesso!");
+		return "redirect:/";
 
 	}
 }

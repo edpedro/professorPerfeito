@@ -23,7 +23,7 @@ public class SistemaController {
 
 	@RequestMapping("/")
 	public String index(Model model) {
-
+		// Listar 3 curso na tela inicial
 		CursoDao dao = new CursoDao();
 		List<Curso> listaCurso = dao.listarTelaInicial(3);
 		model.addAttribute("listaCurso", listaCurso);

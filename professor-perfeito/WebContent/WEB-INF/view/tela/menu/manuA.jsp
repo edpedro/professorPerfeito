@@ -22,7 +22,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a href="#" data-toggle="tooltip" data-placement="top"
+			<a href="<%=request.getContextPath()%>/" data-toggle="tooltip" data-placement="top"
 				title="Professor Perfeito"></a><img
 				src="<%=request.getContextPath()%>/resources/img1/logo2019.png"
 				style="height: 70px"></a>
@@ -48,19 +48,21 @@
 									<span>${alunoLogado.nome}</span>
 									<p class="text-muted small">${alunoLogado.email}</p>
 									<div>
-										<a href="<%=request.getContextPath()%>/tela/perfil"class="btn btn-success vi">Painel</a>
+										<a href="<%=request.getContextPath()%>/tela/perfil"
+											class="btn btn-success vi">Painel</a>
 									</div>
-									<a href="<%=request.getContextPath()%>/logout"class="btn btn-danger btn-sm" style="margin: 10px">Sair</a>
+									<a href="<%=request.getContextPath()%>/logout"
+										class="btn btn-danger btn-sm" style="margin: 10px">Sair</a>
 								</div>
 							</li>
 						</ul></li>
 				</ul>
 			</div>
 			<ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
-				<li><a href="#">Professor</a></li>
-				<li><a href="#">Ajuda</a></li>
-				<li><a href="#">Fala conosco</a></li>
-				<li><a href="#" data-target="#login" data-toggle="modal">Login</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Inicio</a></li>
+				<li><a href="<%=request.getContextPath()%>/buscarCurso">Professor</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Ajuda</a></li>
+				<li><a href="<%=request.getContextPath()%>/">Fala conosco</a></li>				
 			</ul>
 
 

@@ -172,15 +172,15 @@
 
 							<div class="sales">
 								<div class="col-md-4">
-									<div class="circle3">
-										<a href="descProfessor.html"><img
+									<div class="circle3" style="width:200px;">
+										<a href="exibir?id=${curso.idcurso}"><img
 											src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
 											style="background-color: #aaa; border-radius: 50%; width: 100%; height: 200px; overflow: hidden; position: relative; top: 0px; left: px;"></a>
 									</div>
 								</div>
 								<div class="col-md-7">
 									<div class="divider">
-										<a href="descProfessor.html"><h1
+										<a href="exibir?id=${curso.idcurso}"><h1
 												style="text-align: center; margin: -20px;">${curso.professor.nome}</h1></a>
 										<h4 style="text-align: center;">${curso.professor.cidade}
 											- ${curso.professor.estado}</h4>

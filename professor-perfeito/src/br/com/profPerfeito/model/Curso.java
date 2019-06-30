@@ -1,5 +1,4 @@
 package br.com.profPerfeito.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "curso")
@@ -27,9 +28,11 @@ public class Curso {
 
 	@Column
 	private String subMateria;
-
+	
+	@NotEmpty(message="O código deve ser preenchido")
 	@Column
 	private String competencia;
+	
 	@Column
 	private String ministra;
 	@Column
@@ -52,6 +55,17 @@ public class Curso {
 	private double valorWeb;
 	@Column
 	private double valorPacote;
+	@Column
+	private String formacao;
+	
+
+	public String getFormacao() {
+		return formacao;
+	}
+
+	public void setFormacao(String formacao) {
+		this.formacao = formacao;
+	}
 
 	public int getIdcurso() {
 		return idcurso;

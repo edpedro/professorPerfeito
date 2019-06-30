@@ -4,6 +4,7 @@
 <html lang="pt-br">
 <head>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="ISO-8859-1">
@@ -20,7 +21,6 @@
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/bootstrap/css/estilos1.css">
-
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript"
@@ -72,7 +72,7 @@
 
 						$("#materia").change(function() {
 							carregaTabelaJSon();
-						
+
 						});
 					});
 	window.setTimeout(function() {
@@ -80,32 +80,19 @@
 			$(this).remove();
 		});
 	}, 4000);
-	</script>
-	
-	<script type="text/javascript">	
-	$("#cursoFormulario").validate({
-		
-		rules : {
-			competencia : {
-				required : true,
-				rangeWords: true
-				
-			}
-		}
-	})
-})
 </script>
 </head>
 <body>
+
 	<!-- Menu -->
 	<c:import url="menu/menuSessão.jsp" />
-	
-	<c:if test="${not empty msg}">		
-	<div class="alert alert-success" role="alert"
-		style="width: 300px; height: 50px;">
-		<strong>${msg}</strong> Bem-vido!
-	</div>
-	</c:if>	
+
+	<c:if test="${not empty msg}">
+		<div class="alert alert-success" role="alert"
+			style="width: 300px; height: 50px;">
+			<strong>${msg}</strong> Bem-vido!
+		</div>
+	</c:if>
 
 	<div class="container">
 		<div class="stepwizard">
@@ -138,7 +125,9 @@
 			</div>
 		</div>
 		<form action="saveCurso" method="post" role="form" class="form"
-			enctype="multipart/form-data" id="cursoFormulario" name="cursoFormulario">
+			enctype="multipart/form-data" id="cursoFormulario"
+			name="cursoFormulario">
+
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
 					<div class="col-md-12">
@@ -161,17 +150,19 @@
 										competências</label> <input maxlength="200" type="text"
 										name="competencia" class="form-control" id="competencia"
 										placeholder="Adicione outras competências" />
-
+									<form:errors path="curso.competencia" cssStyle="color:red" /> 
 									<!-- id do professor -->
 									<input type="hidden" id="professor" name="professor"
 										value="${sessionScope.professor}">
 
 								</div>
+								
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="listarMateria">Todas as matérias Específica</label> <select
-										class="form-control" id="listarMateria" name="subMateria">
+									<label for="listarMateria">Todas as matérias Específica</label>
+									<select class="form-control" id="listarMateria"
+										name="subMateria">
 										<option value="">Materia Específica</option>
 									</select>
 								</div>
@@ -272,15 +263,18 @@
 						<h3>Fale um pouco mais sobre você</h3>
 						<div class="form-group">
 							<label for="comment">Qual é sua metodologia</label>
-							<textarea class="form-control" rows="5" id="comment"
-								name="metodologia" type="text"
-								placeholder="Ex. A forma que ensino e simples"></textarea>
+							<textarea class="form-control" id="comment" name="metodologia"
+								type="text" placeholder="Ex. A forma que ensino e simples"></textarea>
 						</div>
 						<div class="form-group">
 							<label for="comment">Apresente-se</label>
-							<textarea class="form-control" rows="5" id="comment"
-								name="apresentacao" type="text"
-								placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA"></textarea>
+							<textarea class="form-control" id="comment" name="apresentacao"
+								type="text" placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="comment">Formação</label>
+							<textarea class="form-control" id="comment" name="formacao"
+								type="text" placeholder="Ex. Estudante de Ciência da Computação"></textarea>
 						</div>
 						<div class="form-group">
 							<h3>DADOS</h3>
@@ -340,7 +334,7 @@
 								<div class="form-group">
 									<label class="control-label">O valor pela hora</label> <input
 										maxlength="200" type="text" class="form-control"
-										placeholder="R$" name="valorHora" />
+										placeholder="R$" name="valorHora" id="valorH" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Adicionar uma taxa de
@@ -371,7 +365,7 @@
 
 		</form>
 	</div>
-	
-	
+
+
 </body>
 </html>

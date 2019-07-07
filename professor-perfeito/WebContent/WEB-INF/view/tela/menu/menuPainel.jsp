@@ -4,10 +4,10 @@
 	<div class="navi">
 		<ul>
 			<li class="active" style="height: -500px;"><a
-				href="perfilProfessor.html"><i class="fa fa-home"
+				href="<%=request.getContextPath()%>/tela/perfil"><i class="fa fa-home"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Painel
 						de controle</span></a></li>
-			<li><a href="anunciosPerfil.html"><i class="fa fa-tasks"
+			<li><a href="<%=request.getContextPath()%>/tela/anunciosPerfil"><i class="fa fa-tasks"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Anúncios</span></a></li>
 			<li><a href="valorPerfil.html"><i class="fa fa-bar-chart"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Valor

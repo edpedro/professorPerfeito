@@ -15,29 +15,37 @@ import br.com.profPerfeito.model.Professor;
 
 @Controller
 public class PerfilController {
-	
-	
-
-	
 
 	@RequestMapping("tela/perfil")
-	public String perfil(HttpServletRequest request,HttpSession session, Model model) {
-		
-		
-		
-		 Professor professor = (Professor) session.getAttribute("professorLogado");
-		 if (professor == null) {			
-				
-				return "redirect:/";
-			}	
-		
+	public String perfil(HttpServletRequest request, HttpSession session, Model model) {
+
+		Professor professor = (Professor) session.getAttribute("professorLogado");
+		if (professor == null) {
+
+			return "redirect:/";
+		}
+
 		CursoDao dao = new CursoDao();
 		List<Curso> listaCurso = dao.listarCursoPerfil(professor.getIdprofessor());
 		model.addAttribute("listaCurso", listaCurso);
-	
 
 		return "tela/perfil";
 	}
 
-	
+	@RequestMapping("tela/anunciosPerfil")
+	public String anunciosPerfil(HttpServletRequest request, HttpSession session, Model model) {
+
+		Professor professor = (Professor) session.getAttribute("professorLogado");
+		if (professor == null) {
+
+			return "redirect:/";
+		}
+
+		CursoDao dao = new CursoDao();
+		List<Curso> listaCurso = dao.listarCursoPerfil(professor.getIdprofessor());
+		model.addAttribute("listaCurso", listaCurso);
+
+		return "tela/anunciosPerfil";
+	}
+
 }

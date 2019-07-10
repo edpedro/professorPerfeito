@@ -66,45 +66,55 @@
 						<c:import url="menu/menuFotoProf.jsp" />
 					</c:when>
 				</c:choose>
-				<c:forEach var="curso" items="${listaCurso}">
-
-					<div class="user-dashboard">
+				<div class="user-dashboard">
+					<div class="container-fluid">
 						<div class="row">
-							<div class="col-md-4 col-sm-7 col-xs-12 gutter">
+							<div class="col-md-4 col-sm-7 col-xs-10 gutter">
 								<div class="sales s1" style="background-color: #5fcf80;">
 									<div>
 										<h3>Criar Anúncio</h3>
 									</div>
-									<button class="btn btn-success" type="button">Criar</button>
+									<a href="<%=request.getContextPath()%>/tela/anuncios"><button
+											class="btn btn-success">Criar</button></a>
 								</div>
 							</div>
-							<div class="col-md-12 col-sm-7 col-xs-12 gutter">
-								<div class="sales">
-									<h2>Anúncio</h2>
-									<div class="circle1">
-										<img src="img/mentor.jpg">
+							<c:forEach var="curso" items="${listaCurso}">
+								<div class="col-md-10 col-sm-7 col-xs-10 gutter">
+									<div class="sales">
+										<h2>Anúncio</h2>
+										<div class="circle1 ">
+											<img
+												src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
+										</div>
+										<div class="col-xs-12">
+											<h5 style="text-align: center;" id="limit">${curso.titulo}.</h5>
+										</div>
+										<a href="edit?idAnuncio=${curso.idcurso}"><button
+												class="btn btn-success">Editar</button></a>
 									</div>
-									<div class="divider">
-										<h5 style="text-align: center;">${curso.titulo}</h5>
-									</div>
-									<button class="btn btn-success" type="button">Editar</button>
 								</div>
-							</div>
-							<div class="col-md-12 col-sm-7 col-xs-12 gutter">
-								<div class="sales">
-									<h2>Anúncio</h2>
-									<div class="circle1">
-										<img src="img/mentor.jpg">
+							</c:forEach>
+							<c:forEach var="anuncios" items="${listaAnuncios}">
+								<div class="col-md-10 col-sm-7 col-xs-10 gutter">
+									<div class="sales">
+										<h2>Anúncios</h2>
+										<div class="circle1">
+											<img
+												src="<%=request.getContextPath()%>/resources/img1/${anuncios.professor.imagem}">
+										</div>
+										<div class="divider">
+											<h5 style="text-align: center;" id="limit">${anuncios.titulo}.</h5>
+										</div>
+										<a href="edit?idAnuncio=${curso.idcurso}"><button
+												class="btn btn-success">Editar</button></a>
 									</div>
-									<div class="divider">
-										<h5 style="text-align: center;">Programação Web para
-											Designers - php, js, css e html.</h5>
-									</div>
-									<button class="btn btn-success" type="button">Editar</button>
 								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
-				</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

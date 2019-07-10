@@ -38,7 +38,7 @@
 							id="materia" name="materia">
 							<option value="">Selecione</option>
 							<c:forEach items="${listaMateria}" var="obj">
-								<option value="${obj.idmateria}">${obj.materia}</option>
+								<option value="${obj.idmateria}">${obj.nome_materia}</option>
 							</c:forEach>
 						</select>
 					</div>

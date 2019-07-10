@@ -39,10 +39,24 @@
 <script
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/validacoes.js"></script>
 
+<script type="text/javascript">
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 4000);
+</script>
+
 </head>
 <body class="home">
 	<!--menu --->
 	<c:import url="menu/menuSessão.jsp" />
+	<c:if test="${not empty msg}">
+		<div class="alert alert-success" role="alert"
+			style="width: 300px; height: 50px;">
+			<strong>${msg}</strong>
+		</div>
+	</c:if>
 
 	<style>
 .navi i {
@@ -55,6 +69,7 @@
 		<div class="row display-table-row">
 			<!--MENU PAINEL-->
 			<c:import url="menu/menuPainel.jsp" />
+
 
 			<div class="col-md-10 col-sm-11 display-table-cell v-align">
 				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
@@ -78,7 +93,7 @@
 											src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
 									</div>
 									<div class="divider">
-										<h3 style="text-align: center;">${curso.materia.materia}</h3>
+										<h3 style="text-align: center;">${curso.materia.nome_materia}</h3>
 										<h5 style="text-align: center;">${curso.competencia}</h5>
 										<h3 style="text-align: center;">R$${curso.valorHora}/h</h3>
 									</div>
@@ -117,7 +132,8 @@
 									<div class="divider">
 										<h5 style="text-align: center;" id="limit">${curso.titulo}.</h5>
 									</div>
-									<button class="btn btn-success" type="button">Editar</button>
+									<a href="edit?idAnuncio=${curso.idcurso}"><button
+											class="btn btn-success">Editar</button></a>
 								</div>
 							</div>
 						</div>

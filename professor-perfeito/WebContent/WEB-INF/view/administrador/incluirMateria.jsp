@@ -32,9 +32,7 @@
 			<h3>Adicionar Materia</h3>
 			<div class="col-md-6">
 				<div class="form-group">
-					<label class="control-label">Materia</label> <input maxlength="200"
-						type="text" required="required" class="form-control"
-						name="materia" />
+					<label class="control-label">Materia</label> <input type="text" class="form-control" name="nome_materia" />
 				</div>
 				<button class="btn btn-success nextBtn btn-lg pull-right"
 					type="submit">Cadastrar</button>

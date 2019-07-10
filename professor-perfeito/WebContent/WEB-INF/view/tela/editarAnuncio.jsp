@@ -87,13 +87,6 @@
 	<!-- Menu -->
 	<c:import url="menu/menuSessão.jsp" />
 
-	<c:if test="${not empty msg}">
-		<div class="alert alert-success" role="alert"
-			style="width: 300px; height: 50px;">
-			<strong>${msg}</strong> Bem-vido!
-		</div>
-	</c:if>
-
 	<div class="container">
 		<div class="stepwizard">
 			<div class="stepwizard-row setup-panel">
@@ -124,10 +117,15 @@
 				</div>
 			</div>
 		</div>
-		<form action="saveCurso" method="post" role="form" class="form"
-			enctype="multipart/form-data" id="cursoFormulario"
-			name="cursoFormulario">
-
+		<form action="update" method="post" role="form" class="form"
+			id="cursoFormulario" name="cursoFormulario">
+			
+			<input type="hidden" name="idcurso"
+										value="${editarAnuncio.idcurso}">
+			
+			<input type="hidden" id="professor" name="professor"
+										value="${editarAnuncio.professor.idprofessor}">
+			
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">
 					<div class="col-md-12">
@@ -136,34 +134,32 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="materia">Materia</label> <select
-										class="form-control" id="materia" name="materia" >
-										<option value="">Materia</option>
+										class="form-control" id="materia" name="materia" id="materia"
+										>
+										<option value="${editarAnuncio.materia.materia}">${editarAnuncio.materia.materia}</option>
 										<c:forEach items="${listaMateria}" var="obj">
 											<option value="${obj.idmateria}"
 												<c:if test="${obj.idmateria eq subMateria.materia_materia}">selected="selected"</c:if>>
-												${obj.nome_materia}</option>
+												${obj.materia}</option>
 										</c:forEach>
 									</select>
 								</div>
 								<div class="form-group">
 									<label class="control-label">Adicione outras
 										competências</label> <input maxlength="200" type="text"
-										name="competencia" class="form-control" id="competencia"
-										placeholder="Adicione outras competências" />
-									<form:errors path="curso.competencia" cssStyle="color:red" /> 
-									<!-- id do professor -->
-									<input type="hidden" id="professor" name="professor"
-										value="${sessionScope.professor}">
-
+										name="competencia" value="${editarAnuncio.competencia}"
+										class="form-control" id="competencia"
+										placeholder="Adicione outras competências" />							
+																		
 								</div>
-								
+
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="listarMateria">Todas as matérias Específica</label>
 									<select class="form-control" id="listarMateria"
 										name="subMateria">
-										<option value="">Materia Específica</option>
+										<option value="${editarAnuncio.subMateria}">${editarAnuncio.subMateria}</option>
 									</select>
 								</div>
 							</div>
@@ -239,7 +235,7 @@
 						<div class="form-group">
 							<label for="comment">Título para seu anúncio</label>
 							<textarea class="form-control" rows="5" id="comment"
-								name="titulo" type="text"></textarea>
+								name="titulo" type="text" >${editarAnuncio.titulo}</textarea>
 						</div>
 						<button class="btn btn-success nextBtn btn-lg pull-right"
 							type="button">Avançar</button>
@@ -248,124 +244,66 @@
 			</div>
 			<div class="row setup-content" id="step-4">
 				<div class="col-xs-12">
-					<div class="col-md-12">
-						<h3>Foto</h3>
-						<div class="form-group">
-							<div class="container">
-								<div class="row">
-									<input class="fot" name="file" type='file'
-										onchange="readURL(this);" />
-
-								</div>
-								<img id="blah" src="" alt="" />
-							</div>
-						</div>
-						<h3>Fale um pouco mais sobre você</h3>
-						<div class="form-group">
-							<label for="comment">Qual é sua metodologia</label>
-							<textarea class="form-control" id="comment" name="metodologia"
-								type="text" placeholder="Ex. A forma que ensino e simples"></textarea>
-						</div>
-						<div class="form-group">
-							<label for="comment">Apresente-se</label>
-							<textarea class="form-control" id="comment" name="apresentacao"
-								type="text" placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA"></textarea>
-						</div>
-						<div class="form-group">
-							<label for="comment">Formação</label>
-							<textarea class="form-control" id="comment" name="formacao"
-								type="text" placeholder="Ex. Estudante de Ciência da Computação"></textarea>
-						</div>
-						<div class="form-group">
-							<h3>DADOS</h3>
-							<div class="col-md-12">
-								<div class="form-group col-md-3">
-									<label for="inputCEP">Telefone</label> <input type="text"
-										class="form-control" name="telefone">
-								</div>
-								<div class="form-group col-md-3">
-									<label for="inputCEP">Celular</label> <input type="text"
-										class="form-control" name="celular">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group col-md-3">
-									<label for="inputCEP">Data de nascimento</label> <input
-										type="date" class="form-control" id="inputCEP"
-										name="dataNascimento">
-								</div>
-							</div>
-							<h3>ENDEREÇO</h3>
-							<div class="form-group col-md-2">
-								<label for="inputCEP">CEP</label> <input type="text"
-									class="form-control" id="inputCEP" name="cep">
-							</div>
-							<div class="form-group col-md-6">
-								<label for="inputCity">Cidade</label> <input type="text"
-									class="form-control" id="inputCity" name="cidade">
-							</div>
-							<div class="form-group col-md-2">
-								<label for="inputCity">Estado</label> <input type="text"
-									class="form-control" id="inputCity" name="Estado">
-							</div>
-							<div class="form-row">
-								<div class="form-group  col-md-6">
-									<label for="inputAddress">Rua</label> <input type="text"
-										class="form-control" id="inputAddress"
-										placeholder="EX Rua dos Bobos, nº 0" name="rua">
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputCity">Bairro</label> <input type="text"
-										class="form-control" id="inputCity" name="bairro">
-								</div>
-							</div>
-						</div>
-						<button class="btn btn-success nextBtn btn-lg pull-right"
-							type="button">Avançar</button>
+					<div class="col-md-12"></div>
+					<h3>Fale um pouco mais sobre você</h3>
+					<div class="form-group">
+						<label for="comment">Qual é sua metodologia</label>
+						<textarea class="form-control" id="comment" name="metodologia"
+							type="text" placeholder="Ex. A forma que ensino e simples" >${editarAnuncio.metodologia}</textarea>
 					</div>
+					<div class="form-group">
+						<label for="comment">Apresente-se</label>
+						<textarea class="form-control" id="comment" name="apresentacao"
+							type="text" placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA">${editarAnuncio.metodologia}</textarea>
+					</div>
+					<div class="form-group">
+						<label for="comment">Formação</label>
+						<textarea class="form-control" id="comment" name="formacao"
+							type="text" placeholder="Ex. Estudante de Ciência da Computação">${editarAnuncio.metodologia}</textarea>
+					</div>
+					<button class="btn btn-success nextBtn btn-lg pull-right"
+						type="button">Avançar</button>
 				</div>
 			</div>
+
 			<div class="row setup-content" id="step-5">
 				<div class="col-xs-12">
 					<div class="col-md-12">
-						<h3>Sua tarifa para uma hora de aula</h3>
 						<div class="container">
+							<h3>Sua tarifa para uma hora de aula</h3>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">O valor pela hora</label> <input
 										maxlength="200" type="text" class="form-control"
-										placeholder="R$" name="valorHora" id="valorH" />
+										placeholder="R$" name="valorHora" id="valorH" value="${editarAnuncio.valorHora}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Adicionar uma taxa de
 										deslocamento</label> <input maxlength="200" type="text"
 										class="form-control" placeholder="R$ 20"
-										name="valorDeslocamento" />
+										name="valorDeslocamento" value="${editarAnuncio.valorDeslocamento}"/>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">indicar um valor diferente
 										para aulas por webcam</label> <input maxlength="200" type="text"
-										class="form-control" placeholder="R$ 5" name="valorWeb" />
+										class="form-control" placeholder="R$ 5" name="valorWeb" value="${editarAnuncio.valorWeb}"/>
 								</div>
 								<div class="form-group">
 									<label class="control-label">Propor um valor
 										decrescente para um pacote de aulas</label> <input maxlength="200"
 										type="text" class="form-control" placeholder="R$ 10"
-										name="valorPacote" />
+										name="valorPacote" value="${editarAnuncio.valorPacote}"/>
 								</div>
 							</div>
 							<button class="btn btn-success nextBtn btn-lg pull-right"
-								type="submit">Cadastrar</button>
+								type="submit">Editar</button>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</form>
 	</div>
-
-
 </body>
 </html>

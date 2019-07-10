@@ -16,7 +16,15 @@ public class Materia {
 	private int idmateria;
 
 	@Column
-	private String materia;
+	private String nome_materia;
+
+	public String getNome_materia() {
+		return nome_materia;
+	}
+
+	public void setNome_materia(String nome_materia) {
+		this.nome_materia = nome_materia;
+	}
 
 	public int getIdmateria() {
 		return idmateria;
@@ -26,12 +34,6 @@ public class Materia {
 		this.idmateria = idmateria;
 	}
 
-	public String getMateria() {
-		return materia;
-	}
-
-	public void setMateria(String materia) {
-		this.materia = materia;
-	}
+	
 
 }

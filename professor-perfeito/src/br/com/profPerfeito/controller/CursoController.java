@@ -52,19 +52,19 @@ public class CursoController {
 		return new Gson().toJson(listaSubMateria);
 	}
 
+	// Salvar curso
 	@RequestMapping("tela/saveCurso")
 	public String save1(@Valid Curso curso, Professor professor, @RequestParam("file") MultipartFile imagem,
 			HttpServletRequest request, BindingResult result, RedirectAttributes redirectAttributes) {
 		// IMPLEMENTAÇÃO DA IMAGEM
-		
+
 		if (result.hasErrors()) {
 			return "tela/cadastroCurso";
 		}
-		
+
 		if (Util.fazerUploadImagem(imagem)) {
 			professor.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
 		}
-		
 
 		CursoDao dao = new CursoDao();
 		dao.salvar(curso);
@@ -78,4 +78,6 @@ public class CursoController {
 		return "redirect:/";
 
 	}
+
+	
 }

@@ -27,7 +27,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			<list>
 
 				<bean class="br.com.profPerfeito.converters.ProfessorConverter" />
-				<bean class="br.com.profPerfeito.converters.MateriaConverter" />
+				<bean class="br.com.profPerfeito.converters.MateriaConverter" />			
 
 			</list>
 		</property>

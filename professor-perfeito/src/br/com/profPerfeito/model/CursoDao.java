@@ -71,5 +71,17 @@ public class CursoDao {
 		return lista;
 
 	}
+	
+	public void alterar(Curso curso) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		manager.getTransaction().begin();
+		manager.merge(curso);
+		manager.getTransaction().commit();
+		manager.close();
+		factory.close();
+		}
+	
 
 }

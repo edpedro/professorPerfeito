@@ -34,7 +34,7 @@ public class MateriaDao {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		List<Materia> lista = manager.createQuery("FROM Materia ORDER BY materia").getResultList();
+		List<Materia> lista = manager.createQuery("FROM Materia ORDER BY nome_materia").getResultList();
 		manager.close();
 		factory.close();
 		return lista;

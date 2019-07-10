@@ -1,4 +1,5 @@
 package br.com.profPerfeito.model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,23 +10,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "curso")
-public class Curso {
-
+@Table(name = "anuncios")
+public class Anuncios {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idcurso;
-
+	private int idanuncios;	
+	
 	@ManyToOne
 	@JoinColumn(name = "professor_idprofessor")
 	private Professor professor;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "materia_idmateria")
 	private Materia materia;
-
+	
+	public Materia getMateria() {
+		return materia;
+	}
+	public void setMateria(Materia materia) {
+		this.materia = materia;
+	}
 	@Column
-	private String subMateria;
+	private String subMateria;	
 	
 	@Column
 	private String competencia;
@@ -55,141 +62,105 @@ public class Curso {
 	@Column
 	private String formacao;
 	
-
-	public String getFormacao() {
-		return formacao;
-	}
-
-	public void setFormacao(String formacao) {
-		this.formacao = formacao;
-	}
-
-	public int getIdcurso() {
-		return idcurso;
-	}
-
-	public void setIdcurso(int idcurso) {
-		this.idcurso = idcurso;
-	}
-
-	public String getCompetencia() {
-		return competencia;
-	}
-
-	public void setCompetencia(String competencia) {
-		this.competencia = competencia;
-	}
-
-	public String getMinistra() {
-		return ministra;
-	}
-
-	public void setMinistra(String ministra) {
-		this.ministra = ministra;
-	}
-
-	public String getAulasCasa() {
-		return aulasCasa;
-	}
-
-	public void setAulasCasa(String aulasCasa) {
-		this.aulasCasa = aulasCasa;
-	}
-
-	public String getAulasWebcam() {
-		return aulasWebcam;
-	}
-
-	public void setAulasWebcam(String aulasWebcam) {
-		this.aulasWebcam = aulasWebcam;
-	}
-
-	public String getAulasAluno() {
-		return aulasAluno;
-	}
-
-	public void setAulasAluno(String aulasAluno) {
-		this.aulasAluno = aulasAluno;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getMetodologia() {
-		return metodologia;
-	}
-
-	public void setMetodologia(String metodologia) {
-		this.metodologia = metodologia;
-	}
-
-	public String getApresentacao() {
-		return apresentacao;
-	}
-
-	public void setApresentacao(String apresentacao) {
-		this.apresentacao = apresentacao;
-	}
-
-	public String getValorHora() {
-		return valorHora;
-	}
-
-	public void setValorHora(String valorHora) {
-		this.valorHora = valorHora;
-	}
-
-	public String getValorDeslocamento() {
-		return valorDeslocamento;
-	}
-
-	public void setValorDeslocamento(String valorDeslocamento) {
-		this.valorDeslocamento = valorDeslocamento;
-	}
-
-	public String getValorWeb() {
-		return valorWeb;
-	}
-
-	public void setValorWeb(String valorWeb) {
-		this.valorWeb = valorWeb;
-	}
-
-	public String getValorPacote() {
-		return valorPacote;
-	}
-
-	public void setValorPacote(String valorPacote) {
-		this.valorPacote = valorPacote;
-	}
-
+	
+	
 	public Professor getProfessor() {
 		return professor;
 	}
-
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-
-	public Materia getMateria() {
-		return materia;
+	public int getIdanuncios() {
+		return idanuncios;
 	}
-
-	public void setMateria(Materia materia) {
-		this.materia = materia;
+	public void setIdanuncios(int idanuncios) {
+		this.idanuncios = idanuncios;
 	}
-
 	public String getSubMateria() {
 		return subMateria;
 	}
-
 	public void setSubMateria(String subMateria) {
 		this.subMateria = subMateria;
 	}
+	public String getCompetencia() {
+		return competencia;
+	}
+	public void setCompetencia(String competencia) {
+		this.competencia = competencia;
+	}
+	public String getMinistra() {
+		return ministra;
+	}
+	public void setMinistra(String ministra) {
+		this.ministra = ministra;
+	}
+	public String getAulasCasa() {
+		return aulasCasa;
+	}
+	public void setAulasCasa(String aulasCasa) {
+		this.aulasCasa = aulasCasa;
+	}
+	public String getAulasWebcam() {
+		return aulasWebcam;
+	}
+	public void setAulasWebcam(String aulasWebcam) {
+		this.aulasWebcam = aulasWebcam;
+	}
+	public String getAulasAluno() {
+		return aulasAluno;
+	}
+	public void setAulasAluno(String aulasAluno) {
+		this.aulasAluno = aulasAluno;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getMetodologia() {
+		return metodologia;
+	}
+	public void setMetodologia(String metodologia) {
+		this.metodologia = metodologia;
+	}
+	public String getApresentacao() {
+		return apresentacao;
+	}
+	public void setApresentacao(String apresentacao) {
+		this.apresentacao = apresentacao;
+	}
+	public String getValorHora() {
+		return valorHora;
+	}
+	public void setValorHora(String valorHora) {
+		this.valorHora = valorHora;
+	}
+	public String getValorDeslocamento() {
+		return valorDeslocamento;
+	}
+	public void setValorDeslocamento(String valorDeslocamento) {
+		this.valorDeslocamento = valorDeslocamento;
+	}
+	public String getValorWeb() {
+		return valorWeb;
+	}
+	public void setValorWeb(String valorWeb) {
+		this.valorWeb = valorWeb;
+	}
+	public String getValorPacote() {
+		return valorPacote;
+	}
+	public void setValorPacote(String valorPacote) {
+		this.valorPacote = valorPacote;
+	}
+	public String getFormacao() {
+		return formacao;
+	}
+	public void setFormacao(String formacao) {
+		this.formacao = formacao;
+	}
+	
+	
 
 }

@@ -25,9 +25,10 @@
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">                          
-                          <li><a href="#">Professor</a></li>
-                          <li><a href="#">Ajuda</a></li>
-                          <li><a href="#">Fala conosco</a></li>                          
+                         <li><a href="<%=request.getContextPath()%>/">Inicio</a></li>
+				<li><a href="<%=request.getContextPath()%>/administrador/materia">Sub Materia</a></li>
+							
+				                     
                     </ul>
               </div>
         </div>

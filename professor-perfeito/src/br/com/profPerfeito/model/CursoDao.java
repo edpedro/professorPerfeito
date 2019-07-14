@@ -62,8 +62,9 @@ public class CursoDao {
 
 		String buscar = curso;
 
-		query = manager.createQuery("FROM Curso WHERE titulo LIKE :paramTitulo OR subMateria LIKE:paramTitulo");
+		query = manager.createQuery("FROM Curso WHERE titulo LIKE :paramTitulo OR subMateria LIKE:paramTitulo");		
 		query.setParameter("paramTitulo", "%" + buscar + "%");
+		
 
 		List<Curso> lista = query.getResultList();
 		manager.close();

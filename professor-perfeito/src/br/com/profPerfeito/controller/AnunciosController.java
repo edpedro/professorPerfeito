@@ -74,7 +74,7 @@ public class AnunciosController {
 		AnunciosDao dao = new AnunciosDao();
 		dao.salvar(anuncios);
 
-		redirectAttributes.addFlashAttribute("msg", "Cadastrado com sucesso!");
+		redirectAttributes.addFlashAttribute("msg", "Anuncio cadastrado com sucesso!");
 		return "redirect:/tela/perfil";
 	}
 

@@ -35,6 +35,22 @@ public class ProfessorDao {
 		factory.close();
 		return lista;
 		}
+	public List<Professor> listarProfessorEditarPerfil(int idProf) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		
+		
+		query = manager.createQuery("FROM Professor WHERE idprofessor LIKE :paramIdTeste");
+		query.setParameter("paramIdTeste", "%" + idProf + "%");
+		
+		List<Professor> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}
+	
 	public Professor buscarPorId(int id) {
 		Professor obj = null;
 		EntityManagerFactory factory =
@@ -84,4 +100,18 @@ public class ProfessorDao {
 		factory.close();
 		return lista;
 		}
+	public Professor buscarProfessorID(Professor professor) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = manager.createQuery("FROM Professor WHERE Idprofessor LIKE :paramID");
+		query.setParameter("paramID", professor.getIdprofessor());
+		List<Professor> registros = query.getResultList();
+		Professor obj = null;
+		if (!registros.isEmpty()) {
+			obj = (Professor) registros.get(0);
+		}
+		manager.close();
+		factory.close();
+		return obj;
+	}
 }

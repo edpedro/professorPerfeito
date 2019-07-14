@@ -36,8 +36,7 @@ public class AcesoController {
 		}
 
 		ProfessorDao dao3 = new ProfessorDao();
-		Professor professorLogado = dao3.buscarProfessor(professor);
-		
+		Professor professorLogado = dao3.buscarProfessor(professor);		
 
 		if (professorLogado != null) {
 			session.setAttribute("professorLogado", professorLogado);

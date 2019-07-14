@@ -17,7 +17,7 @@
 			<li><a href="pedidoPerfil.html"><i class="fa fa-calendar"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos
 						de aulas</span></a></li>
-			<li><a href="editarPerfil.html"><i class="fa fa-cog"
+			<li><a href="<%=request.getContextPath()%>/tela/editarPerfil"><i class="fa fa-cog"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Editar
 						conta</span></a></li>
 		</ul>

@@ -35,6 +35,10 @@
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/custom.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/validacoes.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/bootstrap/js/jquery.mask.min.js"></script>		
 
 <script type="text/javascript">
 <!--listar sub materia, AJAX E JSON -->
@@ -81,6 +85,76 @@
 		});
 	}, 4000);
 </script>
+ <script type="text/javascript" >
+
+        $(document).ready(function() {
+        	 $("#salario").mask("999.999.990,00", {reverse: true})
+        	 $("#celular").mask("(00) 0000-00009")
+        	 $("#telefone").mask("(00) 0000-0000")
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+                $("#ibge").val("");
+            }
+            
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");
+                        $("#ibge").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#ibge").val(dados.ibge);
+                               
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+
+    </script>
 </head>
 <body>
 
@@ -264,28 +338,28 @@
 						<div class="form-group">
 							<label for="comment">Qual é sua metodologia</label>
 							<textarea class="form-control" id="comment" name="metodologia"
-								type="text" placeholder="Ex. A forma que ensino e simples"></textarea>
+								rows="5" type="text" placeholder="Ex. A forma que ensino e simples"></textarea>
 						</div>
 						<div class="form-group">
 							<label for="comment">Apresente-se</label>
 							<textarea class="form-control" id="comment" name="apresentacao"
-								type="text" placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA"></textarea>
+								rows="5" type="text" placeholder="Ex. Eu sou programador/ PHP, CSS, JAVA"></textarea>
 						</div>
 						<div class="form-group">
 							<label for="comment">Formação</label>
 							<textarea class="form-control" id="comment" name="formacao"
-								type="text" placeholder="Ex. Estudante de Ciência da Computação"></textarea>
+								rows="5" type="text" placeholder="Ex. Estudante de Ciência da Computação"></textarea>
 						</div>
 						<div class="form-group">
 							<h3>DADOS</h3>
 							<div class="col-md-12">
 								<div class="form-group col-md-3">
 									<label for="inputCEP">Telefone</label> <input type="text"
-										class="form-control" name="telefone">
+										class="form-control" name="telefone" id="telefone">
 								</div>
 								<div class="form-group col-md-3">
 									<label for="inputCEP">Celular</label> <input type="text"
-										class="form-control" name="celular">
+										class="form-control" name="celular" id="celular">
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -297,26 +371,26 @@
 							</div>
 							<h3>ENDEREÇO</h3>
 							<div class="form-group col-md-2">
-								<label for="inputCEP">CEP</label> <input type="text"
-									class="form-control" id="inputCEP" name="cep">
+								<label for="cep">CEP</label> <input type="text"
+									class="form-control" id="cep" value="" size="10" maxlength="9" name="cep">
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputCity">Cidade</label> <input type="text"
-									class="form-control" id="inputCity" name="cidade">
+								<label for="cidade">Cidade</label> <input type="text"
+									class="form-control"  id="cidade" size="40" name="cidade">
 							</div>
 							<div class="form-group col-md-2">
-								<label for="inputCity">Estado</label> <input type="text"
-									class="form-control" id="inputCity" name="Estado">
+								<label for="uf">Estado</label> <input type="text"
+									class="form-control" id="uf" size="2" name="Estado">
 							</div>
 							<div class="form-row">
 								<div class="form-group  col-md-6">
-									<label for="inputAddress">Rua</label> <input type="text"
-										class="form-control" id="inputAddress"
+									<label for="rua">Rua</label> <input type="text"
+										class="form-control" id="rua" size="60"
 										placeholder="EX Rua dos Bobos, nº 0" name="rua">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="inputCity">Bairro</label> <input type="text"
-										class="form-control" id="inputCity" name="bairro">
+									<label for="bairro">Bairro</label> <input type="text"
+										class="form-control" id="bairro" size="40" name="bairro">
 								</div>
 							</div>
 						</div>
@@ -334,26 +408,26 @@
 								<div class="form-group">
 									<label class="control-label">O valor pela hora</label> <input
 										maxlength="200" type="text" class="form-control"
-										placeholder="R$" name="valorHora" id="valorH" />
+										placeholder="R$ 00,00" name="valorHora" id="salario" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Adicionar uma taxa de
 										deslocamento</label> <input maxlength="200" type="text"
-										class="form-control" placeholder="R$ 20"
-										name="valorDeslocamento" />
+										class="form-control" placeholder="R$ 00,00"
+										name="valorDeslocamento" id="salario"/>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">indicar um valor diferente
 										para aulas por webcam</label> <input maxlength="200" type="text"
-										class="form-control" placeholder="R$ 5" name="valorWeb" />
+										class="form-control" placeholder="R$ R$ 00,00" name="valorWeb" id="salario" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Propor um valor
 										decrescente para um pacote de aulas</label> <input maxlength="200"
-										type="text" class="form-control" placeholder="R$ 10"
-										name="valorPacote" />
+										type="text" class="form-control" placeholder="R$ R$ 00,00"
+										name="valorPacote" id="salario"/>
 								</div>
 							</div>
 							<button class="btn btn-success nextBtn btn-lg pull-right"

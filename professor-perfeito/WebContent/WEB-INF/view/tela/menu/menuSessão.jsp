@@ -30,7 +30,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<%=request.getContextPath()%>/">Inicio</a></li>
-				<li><a href="<%=request.getContextPath()%>/buscarCurso">Professor</a></li>
+				<li><a href="<%=request.getContextPath()%>/tela/buscar">Professor</a></li>
 				<li><a href="<%=request.getContextPath()%>/">Ajuda</a></li>
 				<li><a href="<%=request.getContextPath()%>/">Fala conosco</a></li>
 			</ul>

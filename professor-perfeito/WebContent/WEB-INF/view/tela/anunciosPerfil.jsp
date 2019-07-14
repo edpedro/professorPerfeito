@@ -78,22 +78,22 @@
 											class="btn btn-success">Criar</button></a>
 								</div>
 							</div>
-							<c:forEach var="curso" items="${listaCurso}">
+							
 								<div class="col-md-10 col-sm-7 col-xs-10 gutter">
 									<div class="sales">
 										<h2>Anúncio</h2>
 										<div class="circle1 ">
 											<img
-												src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
+												src="<%=request.getContextPath()%>/resources/img1/${professorLogado.imagem}">
 										</div>
 										<div class="col-xs-12">
-											<h5 style="text-align: center;" id="limit">${curso.titulo}.</h5>
+											<h5 style="text-align: center;" id="limit">${curso.titulo}...</h5>
 										</div>
 										<a href="edit?idAnuncio=${curso.idcurso}"><button
 												class="btn btn-success">Editar</button></a>
 									</div>
 								</div>
-							</c:forEach>
+					
 							<c:forEach var="anuncios" items="${listaAnuncios}">
 								<div class="col-md-10 col-sm-7 col-xs-10 gutter">
 									<div class="sales">

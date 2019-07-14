@@ -13,6 +13,13 @@ import br.com.profPerfeito.model.CursoDao;
 @Controller
 public class BuscarController {
 	
+	@RequestMapping("tela/buscar")
+	public String menuBuscar() {	
+		
+		
+		return "tela/buscar";
+	}
+	
 	@RequestMapping("tela/buscarCurso")
 	public String Buscar(Model model, @RequestParam("buscar") String buscar) {
 		

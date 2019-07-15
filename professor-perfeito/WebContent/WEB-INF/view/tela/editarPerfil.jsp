@@ -125,13 +125,41 @@
 	
 	
 </script>
+<script type="text/javascript">
+	window.setTimeout(function() {
+		$(".alert").fadeTo(500, 0).slideUp(500, function() {
+			$(this).remove();
+		});
+	}, 4000);
+
+	$(document).ready(function() {	
+		$("#alterarConta").validate({
+			rules : {				
+				email : {
+					required : true,
+					email : true
+				},
+				senha : {
+					required : true,
+					minlength : 6
+				}
+			}
+		})
+	})
+</script>
 </head>
 <body>
 
 	<!-- Menu -->
 	<c:import url="menu/menuSessão.jsp" />
 
-	<c:if test="${not empty msg}">
+	<c:if test="${msg1 !=null}">
+	<div class="alert alert-danger" role="alert"
+		style="width: 400px; height: 50px;">
+		<strong>${msg1}</strong>
+	</div>
+	</c:if>
+	<c:if test="${msg !=null}">
 		<div class="alert alert-success" role="alert"
 			style="width: 300px; height: 50px;">
 			<strong>${msg}</strong>
@@ -246,8 +274,6 @@
 											<button type="submit" class="btn btn-success">Alterar</button>
 										</div>
 									</div>
-
-
 								</div>
 							</div>
 						</form>
@@ -255,20 +281,22 @@
 							<div class="sales s1">
 								<div class="col-md-12">
 									<h2 style="margin-bottom: 10px;">Conta</h2>
-								</div>
+								</div>								
 								<div class="col-md-12">
-									<form action="">
+									<form action="alterarConta" method="post">
+										<input type="hidden" name="idprofessor"
+										value="${professor.idprofessor}">
 										<div class="form-group">
 											<label for="email">Email</label> <input type="email"
-												class="form-control" id="email">
+												class="form-control" id="email" name="email">
 										</div>
 										<div class="form-group">
-											<label for="pwd">Senha Antiga</label> <input type="password"
-												class="form-control" id="pwd">
+											<label for="senha">Senha Antiga</label> <input type="password"
+												class="form-control" id="senha" name="senhaAntiga">
 										</div>
 										<div class="form-group">
-											<label for="pwd">Senha Nova</label> <input type="password"
-												class="form-control" id="pwd">
+											<label for="senha">Senha Nova</label> <input type="password"
+												class="form-control" id="senha" name="senha">
 										</div>
 										<button type="submit" class="btn btn-success">Alterar</button>
 									</form>

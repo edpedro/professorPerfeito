@@ -94,7 +94,9 @@ public class ProfessorDao {
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;	
 		query = manager.createQuery("FROM Professor WHERE email LIKE :paramEmail");
-		query.setParameter("paramEmail", "%" + professor.getEmail() + "%");		
+		query.setParameter("paramEmail", "%" + professor.getEmail() + "%");	
+		query = manager.createQuery("FROM Aluno WHERE email LIKE :paramEmail");
+		query.setParameter("paramEmail", "%" + professor.getEmail() + "%");
 		List<Professor> lista = query.getResultList();
 		manager.close();
 		factory.close();

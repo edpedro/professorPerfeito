@@ -1,5 +1,7 @@
 package br.com.profPerfeito.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.profPerfeito.model.Curso;
+import br.com.profPerfeito.model.CursoDao;
 import br.com.profPerfeito.model.Professor;
 import br.com.profPerfeito.model.ProfessorDao;
 import br.com.profPerfeito.util.Util;
@@ -28,6 +32,11 @@ public class ProfessorController {
 		ProfessorDao dao = new ProfessorDao();
 		Professor professor1 = dao.buscarPorId(professor.getIdprofessor());
 		model.addAttribute("professor", professor1);
+
+		// listar curso
+		CursoDao dao3 = new CursoDao();
+		List<Curso> curso = dao3.listarCursoPerfil(professor1.getIdprofessor());
+		model.addAttribute("curso", curso);
 
 		return "tela/editarPerfil";
 	}
@@ -71,7 +80,8 @@ public class ProfessorController {
 
 	@RequestMapping("tela/alterarConta")
 	public String alterarConta(Professor professor, Model model, RedirectAttributes redirectAttributes,
-			@RequestParam String senha, @RequestParam String email, @RequestParam String senhaAntiga) {
+			@RequestParam String senha, @RequestParam String email, @RequestParam String senhaAntiga,
+			HttpSession session) {
 
 		ProfessorDao dao1 = new ProfessorDao();
 		Professor professor1 = dao1.buscarProfessorID(professor);
@@ -107,7 +117,8 @@ public class ProfessorController {
 					// Alterar dados novos
 					ProfessorDao dao = new ProfessorDao();
 					dao.alterar(professor);
-					
+					session.invalidate();
+
 					redirectAttributes.addFlashAttribute("msg", "Senha alterada com sucesso!");
 					return "redirect:/tela/editarPerfil";
 				}
@@ -118,6 +129,55 @@ public class ProfessorController {
 
 			}
 
+		}
+
+	}
+
+	@RequestMapping("tela/exluirConta")
+	public String excluirConta(Professor professor, Model model, @RequestParam String senha, @RequestParam String email,
+			@RequestParam int idcurso, RedirectAttributes redirectAttributes,HttpSession session) {
+
+		// listar professor
+		ProfessorDao dao1 = new ProfessorDao();
+		Professor professor1 = dao1.buscarProfessorID(professor);
+
+		if (!email.equalsIgnoreCase(professor1.getEmail())) {
+
+			redirectAttributes.addFlashAttribute("msg1", "Email invalido!");
+			return "redirect:/tela/editarPerfil";
+
+		} else {
+
+			if (!senha.equalsIgnoreCase(professor1.getSenha())) {
+
+				redirectAttributes.addFlashAttribute("msg1", "Senha invalida!");
+				return "redirect:/tela/editarPerfil";
+
+			} else {
+				System.out.println(idcurso);
+				if (idcurso != 0) {
+					
+					CursoDao dao2 = new CursoDao();
+					dao2.remover(idcurso);
+					
+					ProfessorDao dao = new ProfessorDao();
+					dao.remover(professor1.getIdprofessor());
+					
+					session.invalidate();
+					
+					redirectAttributes.addFlashAttribute("msg", "Conta Excluida!");
+					return "redirect:/";
+				} else {					
+
+					ProfessorDao dao = new ProfessorDao();
+					dao.remover(professor1.getIdprofessor());
+					
+					session.invalidate();
+					
+					redirectAttributes.addFlashAttribute("msg", "Conta Excluida!");
+					return "redirect:/";
+				}
+			}
 		}
 
 	}

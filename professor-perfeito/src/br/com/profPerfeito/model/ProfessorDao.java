@@ -20,6 +20,17 @@ public class ProfessorDao {
 		manager.close();
 		factory.close();
 	}
+	public List<Professor> listarTodosProfessor() {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		query = manager.createQuery("FROM Professor ORDER BY nome");
+		List<Professor> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}
 	public List<Professor> listar(String idProf) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
@@ -116,4 +127,16 @@ public class ProfessorDao {
 		factory.close();
 		return obj;
 	}
+	
+	public void remover(int id) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Professor professor = manager.find(Professor.class, id);
+		manager.getTransaction().begin();
+		manager.remove(professor);
+		manager.getTransaction().commit();
+		manager.close();
+		factory.close();
+		}
 }

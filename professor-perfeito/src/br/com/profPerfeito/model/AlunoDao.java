@@ -21,6 +21,17 @@ public class AlunoDao {
 		factory.close();
 	}
 	
+	public List<Aluno> listarTodosAluno() {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		query = manager.createQuery("FROM Aluno ORDER BY nome");
+		List<Aluno> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}
 	public Aluno buscarUsuario(Aluno aluno) {
 		EntityManagerFactory factory =
 		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);

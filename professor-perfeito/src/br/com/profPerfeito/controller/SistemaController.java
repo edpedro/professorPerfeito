@@ -15,6 +15,8 @@ import br.com.profPerfeito.model.Aluno;
 import br.com.profPerfeito.model.AlunoDao;
 import br.com.profPerfeito.model.Curso;
 import br.com.profPerfeito.model.CursoDao;
+import br.com.profPerfeito.model.Materia;
+import br.com.profPerfeito.model.MateriaDao;
 import br.com.profPerfeito.model.Professor;
 import br.com.profPerfeito.model.ProfessorDao;
 
@@ -27,6 +29,18 @@ public class SistemaController {
 		CursoDao dao = new CursoDao();
 		List<Curso> listaCurso = dao.listarTelaInicial(3);
 		model.addAttribute("listaCurso", listaCurso);
+		
+		ProfessorDao dao1 = new ProfessorDao();
+		List<Professor> listaTodosProfessor  = dao1.listarTodosProfessor();
+		model.addAttribute("listaTodosProfessor", listaTodosProfessor.size());
+		
+		AlunoDao dao3 = new AlunoDao();
+		List<Aluno> listaTodosAluno  = dao3.listarTodosAluno();
+		model.addAttribute("listaTodosAluno", listaTodosAluno.size());;
+		
+		MateriaDao dao4 = new MateriaDao();
+		List<Materia> listaTodosMateria  = dao4.listarTodosMateria();
+		model.addAttribute("listaTodosMateria", listaTodosMateria.size());;
 
 		return "tela/telaInicial";
 	}

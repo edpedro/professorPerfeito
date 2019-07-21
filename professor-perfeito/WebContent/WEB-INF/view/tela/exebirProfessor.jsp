@@ -64,7 +64,7 @@
 				<div class="row">				
 					<div class="col-md-12 col-sm-7 col-xs-12 gutter">
 						<div class="sales">
-							<div class="col-md-4" style="width:200px;">
+							<div class="col-md-4" style="width:230px;">
 								<div class="circle3">
 									<img src="<%=request.getContextPath()%>/resources/img1/${ExibirProfessor.professor.imagem}"
 									class="img-thumbnail img-circle"
@@ -121,7 +121,7 @@
 							<div class="col-md-12">
 								<form action="">
 									<label class="form-check-label">
-										<button class="btn btn-success " type="button">${ExibirProfessor.materia.materia}</button>
+										<button class="btn btn-success " type="button">${ExibirProfessor.materia.nome_materia}</button>
 									</label> <label class="form-check-label">
 										<button class="btn btn-success " type="button">${ExibirProfessor.subMateria}</button>
 									</label> <label class="form-check-label">

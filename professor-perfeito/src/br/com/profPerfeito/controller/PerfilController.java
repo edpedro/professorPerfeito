@@ -42,9 +42,11 @@ public class PerfilController {
 
 			return "redirect:/";
 		}
-		// listar os Anuncios
+		// listar os Anuncios e quantidades
 		AnunciosDao dao1 = new AnunciosDao();
 		List<Anuncios> listaAnuncios = dao1.listarAnunciosPerfil(professor.getIdprofessor());
+		int quantAnuncios = listaAnuncios.size();
+		model.addAttribute("quantidadeAnuncios", quantAnuncios);
 		model.addAttribute("listaAnuncios", listaAnuncios);
 		
 		//listar o primiero anuncios

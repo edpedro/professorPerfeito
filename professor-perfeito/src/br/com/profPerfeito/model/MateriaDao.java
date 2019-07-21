@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class MateriaDao {
 	
@@ -19,6 +20,17 @@ public class MateriaDao {
 	manager.close();
 	factory.close();
 	}
+	public List<Materia> listarTodosMateria() {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		query = manager.createQuery("FROM Materia ORDER BY nome_materia");
+		List<Materia> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+		}
 	
 	public Materia buscarPorId(int id) {
 		Materia obj = null;

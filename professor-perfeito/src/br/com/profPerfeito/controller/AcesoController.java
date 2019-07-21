@@ -2,6 +2,7 @@ package br.com.profPerfeito.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -19,13 +20,17 @@ import br.com.profPerfeito.model.ProfessorDao;
 @Controller
 public class AcesoController {
 
+	private String teste;
+
 	@RequestMapping("efetuarLogin")
-	public String efetuarLogin(Aluno aluno, Professor professor, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
-		//LISTAR PROFESSOR NA TELA INICIAL
+	public String efetuarLogin(Aluno aluno, Professor professor, HttpSession session, Model model,
+			RedirectAttributes redirectAttributes,HttpServletRequest request) {
+		// LISTAR PROFESSOR NA TELA INICIAL
 		CursoDao dao1 = new CursoDao();
 		List<Curso> listaCurso = dao1.listarTelaInicial(3);
 		model.addAttribute("listaCurso", listaCurso);
 
+		//login do aluno
 		AlunoDao dao2 = new AlunoDao();
 		Aluno alunoLogado = dao2.buscarUsuario(aluno);
 
@@ -34,17 +39,37 @@ public class AcesoController {
 			model.addAttribute("msg", "logado com sucesso!");
 			return "tela/telaInicial";
 		}
-
-		ProfessorDao dao3 = new ProfessorDao();
-		Professor professorLogado = dao3.buscarProfessor(professor);		
-
-		if (professorLogado != null) {
-			session.setAttribute("professorLogado", professorLogado);
-			redirectAttributes.addFlashAttribute("msg", "logado com sucesso!");
-			
-			return "redirect:/";
-		}	
 		
+		
+		//login do professor
+		ProfessorDao dao3 = new ProfessorDao();
+		Professor professorLogado = dao3.buscarProfessor(professor);
+		
+		if (professorLogado != null) {
+
+			CursoDao dao4 = new CursoDao();
+			List<Curso> curso = dao4.listarCursoPerfil(professorLogado.getIdprofessor());
+			
+			if (curso.size() != 0) {
+				
+				ProfessorDao dao = new ProfessorDao();
+				List<Professor> listaProfessor  = dao.listarTodosProfessor();
+				model.addAttribute("listaProfessor", listaProfessor.size());
+
+				session.setAttribute("professorLogado", professorLogado);
+				redirectAttributes.addFlashAttribute("msg", "logado com sucesso!");
+
+				return "redirect:/";
+
+			} else {
+				
+				request.getSession().setAttribute("professor", professorLogado.getIdprofessor());
+				redirectAttributes.addFlashAttribute("msg", professorLogado.getNome());
+
+				return "redirect:/tela/cadastroCurso";
+			}
+		}
+
 		redirectAttributes.addFlashAttribute("msg", "login ou senha invalida");
 		return "redirect:/";
 	}

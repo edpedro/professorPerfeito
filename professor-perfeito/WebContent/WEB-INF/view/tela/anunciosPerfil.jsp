@@ -74,17 +74,27 @@
 									<div>
 										<h3>Criar Anúncio</h3>
 									</div>
-									<a href="<%=request.getContextPath()%>/tela/anuncios"><button
-											class="btn btn-success">Criar</button></a>
+									<c:choose>
+										<c:when test="${quantidadeAnuncios >= 3}">
+
+											<button class="btn btn-danger">Limite excedido</button>
+										</c:when>
+										<c:otherwise>
+											<a href="<%=request.getContextPath()%>/tela/anuncios"><button
+													class="btn btn-success">Criar</button></a>
+
+
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
-							
+							<c:forEach var="curso" items="${listaCurso}">
 								<div class="col-md-10 col-sm-7 col-xs-10 gutter">
 									<div class="sales">
 										<h2>Anúncio</h2>
 										<div class="circle1 ">
 											<img
-												src="<%=request.getContextPath()%>/resources/img1/${professorLogado.imagem}">
+												src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
 										</div>
 										<div class="col-xs-12">
 											<h5 style="text-align: center;" id="limit">${curso.titulo}...</h5>
@@ -93,7 +103,7 @@
 												class="btn btn-success">Editar</button></a>
 									</div>
 								</div>
-					
+							</c:forEach>
 							<c:forEach var="anuncios" items="${listaAnuncios}">
 								<div class="col-md-10 col-sm-7 col-xs-10 gutter">
 									<div class="sales">
@@ -105,8 +115,35 @@
 										<div class="divider">
 											<h5 style="text-align: center;" id="limit">${anuncios.titulo}.</h5>
 										</div>
-										<a href="edit?idAnuncio=${curso.idcurso}"><button
-												class="btn btn-success">Editar</button></a>
+										<a href="edit?idAnuncio=${anuncios.idanuncios}"><button
+												class="btn btn-success">Editar</button></a> - <a href="#"
+											data-toggle="modal" data-target="#exampleModal"><button
+												class="btn btn-danger">Remover</button></a>
+									</div>
+								</div>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">DELETAR
+													ANUNCIOS</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">Deseja deletar o anuncio</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-success"
+													data-dismiss="modal">Fecha</button>
+												<a href="delete?idDelete=${anuncios.idanuncios}"><button
+														type="button" class="btn btn-danger">Deletar</button></a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</c:forEach>

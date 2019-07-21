@@ -55,10 +55,13 @@ public class AnunciosController {
 		if (professor == null) {
 
 			return "redirect:/";
-		}
-
+		}	
+				
+		
+		//id professor
 		model.addAttribute("professor", professor.getIdprofessor());
-
+		
+		//listar materia e sub materia
 		SubMateriaDao dao = new SubMateriaDao();
 		List<SubMateria> listaSubMateria = dao.listar(null);
 		model.addAttribute("listaSubMateria", listaSubMateria);
@@ -77,5 +80,17 @@ public class AnunciosController {
 		redirectAttributes.addFlashAttribute("msg", "Anuncio cadastrado com sucesso!");
 		return "redirect:/tela/perfil";
 	}
+	@RequestMapping("/tela/delete")
+	public String detelte(@RequestParam("idDelete") Integer idDelete, Model model, RedirectAttributes redirectAttributes) {
 
+		AnunciosDao dao = new AnunciosDao();
+		dao.remover(idDelete);
+
+		redirectAttributes.addFlashAttribute("msg", "Anuncio deletado com sucesso!");
+		return "redirect:/tela/perfil";
+	}
+	
+
+	
+	
 }

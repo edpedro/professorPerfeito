@@ -307,16 +307,52 @@
 									<h2 style="margin-bottom: 10px;">Excluir Conta</h2>
 								</div>
 								<div class="col-md-12">
-									<form action="">
+									<form action="exluirConta" method="post">
+										<input type="hidden" name="idprofessor"
+										value="${professor.idprofessor}">
+										
+										<c:forEach var="curso" items="${curso}">
+										
+										<input type="hidden" name="idcurso"
+										value="${curso.idcurso}">
+										
+										</c:forEach>
+										
+										
 										<div class="form-group">
 											<label for="email">Email</label> <input type="email"
-												class="form-control" id="email">
+												class="form-control" id="email" name="email">
 										</div>
 										<div class="form-group">
 											<label for="pwd">Senha</label> <input type="password"
-												class="form-control" id="pwd">
+												class="form-control" id="pwd" name="senha">
 										</div>
-										<button type="submit" class="btn btn-success">Excluir</button>
+										<a href="#" data-toggle="modal" data-target="#exampleModal">
+										<button  type="button" class="btn btn-success">Excluir</button></a>
+										
+										<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">EXCLUIR CONTA</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">Deseja excluir conta</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-success"
+													data-dismiss="modal">Fecha</button>
+												<button type="submit" class="btn btn-danger">Excluir conta</button>
+											</div>
+										</div>
+									</div>
+								</div>
+										
 									</form>
 								</div>
 							</div>

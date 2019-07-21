@@ -98,10 +98,10 @@
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${msg1 !=null}">
-	<div class="alert alert-danger" role="alert"
-		style="width: 400px; height: 50px;">
-		<strong>${msg1}</strong>
-	</div>
+		<div class="alert alert-danger" role="alert"
+			style="width: 400px; height: 50px;">
+			<strong>${msg1}</strong>
+		</div>
 	</c:if>
 	<c:if test="${msg !=null}">
 		<div class="alert alert-success" role="alert"
@@ -111,55 +111,55 @@
 	</c:if>
 
 
-		<!--BANNER-->
-		<div class="banner">
-			<div class="bg-color">
-				<div class="container">
-					<div class="row">
-						<div class="banner-text text-center">
-							<div class="text-border">
-								<c:choose>
-									<c:when test="${not empty alunoLogado}">
-										<a id="text-dec1"><h2 class="text-dec">Melhor site de
-												compartilhar ensino</h2></a>
-									</c:when>
-									<c:when test="${not empty professorLogado}">
-										<a id="text-dec1"><h2 class="text-dec">Melhor site de
-												compartilhar ensino</h2></a>
-									</c:when>
-									<c:otherwise>
-										<a href="#" data-target="#cadastro" data-toggle="modal"
-											id="text-dec1"><h2 class="text-dec">DAR AULAS</h2></a>
-									</c:otherwise>
-								</c:choose>
-							</div>
-							<div class="intro-para text-center quote">
-								<p class="big-text">Encontre e converse gratuitamente com
-									professores particulares de todo o Brasil</p>
-							</div>
-							<a href="#faculity-member" class="mouse-hover">
-								<div class="mouse " data-toggle="tooltip" data-placement="top"
-									title="Listar professor"></div>
-							</a>
+	<!--BANNER-->
+	<div class="banner">
+		<div class="bg-color">
+			<div class="container">
+				<div class="row">
+					<div class="banner-text text-center">
+						<div class="text-border">
+							<c:choose>
+								<c:when test="${not empty alunoLogado}">
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de
+											compartilhar ensino</h2></a>
+								</c:when>
+								<c:when test="${not empty professorLogado}">
+									<a id="text-dec1"><h2 class="text-dec">Melhor site de
+											compartilhar ensino</h2></a>
+								</c:when>
+								<c:otherwise>
+									<a href="#" data-target="#cadastro" data-toggle="modal"
+										id="text-dec1"><h2 class="text-dec">DAR AULAS</h2></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
+						<div class="intro-para text-center quote">
+							<p class="big-text">Encontre e converse gratuitamente com
+								professores particulares de todo o Brasil</p>
+						</div>
+						<a href="#faculity-member" class="mouse-hover">
+							<div class="mouse " data-toggle="tooltip" data-placement="top"
+								title="Listar professor"></div>
+						</a>
+					</div>
 
-						<!-- BARRA DE BUSCAR-->
-						<div class="col-md-12">
-							<div class="cta-2-form text-center">
-								<form action="tela/buscarCurso" method="get"
-									id="workshop-newsletter-form">
-									<input name="buscar" placeholder="Qual matéria deseja aprende?"
-										type="text" id="email"
-										style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;"
-										required> <input class="cta-2-form-submit-btn"
-										value="Buscar" type="submit">
-								</form>
-							</div>
+					<!-- BARRA DE BUSCAR-->
+					<div class="col-md-12">
+						<div class="cta-2-form text-center">
+							<form action="tela/buscarCurso" method="get"
+								id="workshop-newsletter-form">
+								<input name="buscar" placeholder="Qual matéria deseja aprende?"
+									type="text" id="email"
+									style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;"
+									required> <input class="cta-2-form-submit-btn"
+									value="Buscar" type="submit">
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!--CORPO-->
 	<!--PROFESSORES-->
@@ -343,21 +343,21 @@
 				<div class="col-md-6">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<div class="orga-stru">
-							<h3>15.000</h3>
+							<h3>${listaTodosProfessor}</h3>
 							<p>professores</p>
 							<i class="fa fa-male"></i>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<div class="orga-stru">
-							<h3>5.000</h3>
+							<h3>${listaTodosAluno}</h3>
 							<p>alunos satisfeitos</p>
 							<i class="fa fa-male"></i>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<div class="orga-stru">
-							<h3>1.500</h3>
+							<h3>${listaTodosMateria}</h3>
 							<p>matérias</p>
 							<i class="fa fa-male"></i>
 						</div>
@@ -412,10 +412,13 @@
 				<div class="col-lg-12">
 					<h2 class="text-center">Encontre o professor perfeito</h2>
 					<div class="cta-2-form text-center">
-						<form action="#" method="post" id="workshop-newsletter-form">
-							<input name="" placeholder="Ex: matemática" type="text"
-								style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;">
-							<input class="cta-2-form-submit-btn" value="Buscar" type="submit">
+						<form action="tela/buscarCurso" method="get"
+							id="workshop-newsletter-form">
+							<input name="buscar" placeholder="Qual matéria deseja aprende?"
+								type="text" id="email"
+								style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;"
+								required> <input class="cta-2-form-submit-btn"
+								value="Buscar" type="submit">
 						</form>
 					</div>
 				</div>

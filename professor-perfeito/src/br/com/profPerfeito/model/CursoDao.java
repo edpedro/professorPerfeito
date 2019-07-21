@@ -59,13 +59,10 @@ public class CursoDao {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Query query = null;
-
 		String buscar = curso;
-
 		query = manager.createQuery("FROM Curso WHERE titulo LIKE :paramTitulo OR subMateria LIKE:paramTitulo");		
 		query.setParameter("paramTitulo", "%" + buscar + "%");
 		
-
 		List<Curso> lista = query.getResultList();
 		manager.close();
 		factory.close();
@@ -83,6 +80,16 @@ public class CursoDao {
 		manager.close();
 		factory.close();
 		}
-	
+	public void remover(int id) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Curso curso = manager.find(Curso.class, id);
+		manager.getTransaction().begin();
+		manager.remove(curso);
+		manager.getTransaction().commit();
+		manager.close();
+		factory.close();
+		}
 
 }

@@ -64,7 +64,8 @@
 					<div class="cta-2-form text-center">
 						<form action="buscarCurso" method="get"
 							id="workshop-newsletter-form">
-							<input name="buscar" placeholder="Pesquisar...." type="text" id="email"
+							<input name="buscar" placeholder="Pesquisar...." type="text"
+								id="email"
 								style="border: 0px solid #CCC; padding: 20px 40px; font-size: 18px; color: #2b5d83; font-weight: 100; min-width: 50%; margin-left: -4px; margin-bottom: 2px; border: 1px solid #5fcf80; background-color: rgb(247, 247, 247); border-radius: 30px 0px 0px 30px;"
 								required> <input class="cta-2-form-submit-btn"
 								value="Buscar" type="submit">
@@ -172,7 +173,7 @@
 
 							<div class="sales">
 								<div class="col-md-4">
-									<div class="circle3" style="width:200px;">
+									<div class="circle3" style="width: 200px;">
 										<a href="exibir?id=${curso.idcurso}"><img
 											src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
 											style="background-color: #aaa; border-radius: 50%; width: 100%; height: 200px; overflow: hidden; position: relative; top: 0px; left: px;"></a>
@@ -188,6 +189,32 @@
 									</div>
 									<div id="btn5">
 										<h1 style="text-align: center; margin-left: 120px;">R$${curso.valorHora}/h</h1>
+										<button class="btn btn-success" type="button">
+											Solicitar Aula</button>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+						<c:forEach var="anuncios" items="${BuscarAnuncios}">
+
+							<div class="sales">
+								<div class="col-md-4">
+									<div class="circle3" style="width: 200px;">
+										<a href="exibir?id=${anuncios.idanuncios}"><img
+											src="<%=request.getContextPath()%>/resources/img1/${anuncios.professor.imagem}"
+											style="background-color: #aaa; border-radius: 50%; width: 100%; height: 200px; overflow: hidden; position: relative; top: 0px; left: px;"></a>
+									</div>
+								</div>
+								<div class="col-md-7">
+									<div class="divider">
+										<a href="exibir?id=${anuncios.idanuncios}"><h1
+												style="text-align: center; margin: -20px;">${anuncios.professor.nome}</h1></a>
+										<h4 style="text-align: center;">${anuncios.professor.cidade}
+											- ${anuncios.professor.estado}</h4>
+										<h5 style="text-align: center;">${anuncios.titulo}</h5>
+									</div>
+									<div id="btn5">
+										<h1 style="text-align: center; margin-left: 120px;">R$${anuncios.valorHora}/h</h1>
 										<button class="btn btn-success" type="button">
 											Solicitar Aula</button>
 									</div>

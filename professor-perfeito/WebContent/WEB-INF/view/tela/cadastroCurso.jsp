@@ -88,7 +88,10 @@
  <script type="text/javascript" >
 
         $(document).ready(function() {
-        	 $("#salario").mask("999.999.990,00", {reverse: true})
+        	 $("#valorHora").mask("999.999.990,00", {reverse: true})
+        	 $("#valorDeslocamento").mask("999.999.990,00", {reverse: true})
+        	 $("#valorWeb").mask("999.999.990,00", {reverse: true})
+        	 $("#valorWeb").mask("999.999.990,00", {reverse: true})
         	 $("#celular").mask("(00) 0000-00009")
         	 $("#telefone").mask("(00) 0000-0000")
             function limpa_formulário_cep() {
@@ -408,26 +411,26 @@
 								<div class="form-group">
 									<label class="control-label">O valor pela hora</label> <input
 										maxlength="200" type="text" class="form-control"
-										placeholder="R$ 00,00" name="valorHora" id="salario" />
+										placeholder="R$ 00,00" name="valorHora" id="valorHora" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Adicionar uma taxa de
 										deslocamento</label> <input maxlength="200" type="text"
 										class="form-control" placeholder="R$ 00,00"
-										name="valorDeslocamento" id="salario"/>
+										name="valorDeslocamento" id="valorDeslocamento"/>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">indicar um valor diferente
 										para aulas por webcam</label> <input maxlength="200" type="text"
-										class="form-control" placeholder="R$ R$ 00,00" name="valorWeb" id="salario" />
+										class="form-control" placeholder="R$ R$ 00,00" name="valorWeb" id="valorWeb" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Propor um valor
 										decrescente para um pacote de aulas</label> <input maxlength="200"
 										type="text" class="form-control" placeholder="R$ R$ 00,00"
-										name="valorPacote" id="salario"/>
+										name="valorPacote" id="valorPacote"/>
 								</div>
 							</div>
 							<button class="btn btn-success nextBtn btn-lg pull-right"

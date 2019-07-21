@@ -21,6 +21,17 @@ public class AnunciosDao {
 		factory.close();
 	}
 	
+	public Anuncios buscarPorId(int id) {
+		Anuncios obj = null;
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		obj = manager.find(Anuncios.class, id);
+		manager.close();
+		factory.close();
+		return obj;
+		}
+	
 	public List<Anuncios> listarAnunciosPerfil(int AnunciosPerfil) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -35,6 +46,31 @@ public class AnunciosDao {
 		factory.close();
 		return lista;
 	}
+	public void remover(int id) {
+		EntityManagerFactory factory =
+		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Anuncios produto = manager.find(Anuncios.class, id);
+		manager.getTransaction().begin();
+		manager.remove(produto);
+		manager.getTransaction().commit();
+		manager.close();
+		factory.close();
+		}
+	public List<Anuncios> buscar(String anuncios) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = null;
+		String buscar = anuncios;		
+		query = manager.createQuery("FROM Anuncios WHERE titulo LIKE :paramTitulo1 OR subMateria LIKE:paramTitulo1");		
+		query.setParameter("paramTitulo1", "%" + buscar + "%");
+		
 
+		List<Anuncios> lista = query.getResultList();
+		manager.close();
+		factory.close();
+		return lista;
+
+	}
 
 }

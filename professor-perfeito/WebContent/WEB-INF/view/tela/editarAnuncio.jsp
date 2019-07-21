@@ -134,13 +134,12 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="materia">Materia</label> <select
-										class="form-control" id="materia" name="materia" id="materia"
-										>
-										<option value="${editarAnuncio.materia.materia}">${editarAnuncio.materia.materia}</option>
+										class="form-control" id="materia" name="materia" id="materia">
+										<option value="">Materia</option>
 										<c:forEach items="${listaMateria}" var="obj">
 											<option value="${obj.idmateria}"
 												<c:if test="${obj.idmateria eq subMateria.materia_materia}">selected="selected"</c:if>>
-												${obj.materia}</option>
+												${obj.nome_materia}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -159,7 +158,7 @@
 									<label for="listarMateria">Todas as matérias Específica</label>
 									<select class="form-control" id="listarMateria"
 										name="subMateria">
-										<option value="${editarAnuncio.subMateria}">${editarAnuncio.subMateria}</option>
+										<option value="">Materia Específica</option>
 									</select>
 								</div>
 							</div>

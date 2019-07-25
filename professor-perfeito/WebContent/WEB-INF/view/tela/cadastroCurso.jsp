@@ -91,7 +91,7 @@
         	 $("#valorHora").mask("999.999.990,00", {reverse: true})
         	 $("#valorDeslocamento").mask("999.999.990,00", {reverse: true})
         	 $("#valorWeb").mask("999.999.990,00", {reverse: true})
-        	 $("#valorWeb").mask("999.999.990,00", {reverse: true})
+        	 $("#valorPacote").mask("999.999.990,00", {reverse: true})
         	 $("#celular").mask("(00) 0000-00009")
         	 $("#telefone").mask("(00) 0000-0000")
             function limpa_formulário_cep() {
@@ -229,8 +229,8 @@
 										placeholder="Adicione outras competências" />
 									<form:errors path="curso.competencia" cssStyle="color:red" /> 
 									<!-- id do professor -->
-									<input type="hidden" id="professor" name="professor"
-										value="${sessionScope.professor}">
+									<input type="hidden" id="usuario" name="usuario"
+										value="${sessionScope.usuario}">
 
 								</div>
 								

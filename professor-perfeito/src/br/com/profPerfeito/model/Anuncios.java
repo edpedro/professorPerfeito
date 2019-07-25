@@ -20,10 +20,10 @@ public class Anuncios {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idanuncios;	
 	
-	@ManyToOne
-	@JoinColumn(name = "professor_idprofessor")
+	@ManyToOne	
+	@JoinColumn(name = "usuario_idusuario")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Professor professor;
+	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "materia_idmateria")
@@ -64,15 +64,15 @@ public class Anuncios {
 	@Column
 	private String valorPacote;
 	@Column
-	private String formacao;
+	private String formacao;	
 	
 	
 	
-	public Professor getProfessor() {
-		return professor;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	public int getIdanuncios() {
 		return idanuncios;

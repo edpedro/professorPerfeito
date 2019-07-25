@@ -46,7 +46,7 @@ public class CursoDao {
 		Query query = null;
 
 		int perfil = cursoPerfil;
-		query = manager.createQuery("FROM Curso WHERE professor_idprofessor LIKE :paramCursoPerfil");
+		query = manager.createQuery("FROM Curso WHERE usuario_idusuario LIKE :paramCursoPerfil");
 		query.setParameter("paramCursoPerfil", "%" + perfil + "%");
 
 		List<Curso> lista = query.getResultList();
@@ -81,8 +81,7 @@ public class CursoDao {
 		factory.close();
 		}
 	public void remover(int id) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
 		Curso curso = manager.find(Curso.class, id);
 		manager.getTransaction().begin();
@@ -90,6 +89,20 @@ public class CursoDao {
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
+	}
+	
+	public Curso buscarCursoID(int usuario) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = manager.createQuery("FROM Curso WHERE idcurso LIKE :paramID");
+		query.setParameter("paramID", usuario);
+		List<Curso> registros = query.getResultList();
+		Curso obj = null;
+		if (!registros.isEmpty()) {
+			obj = (Curso) registros.get(0);
 		}
-
+		manager.close();
+		factory.close();
+		return obj;
+	}
 }

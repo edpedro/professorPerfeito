@@ -21,10 +21,10 @@ import com.google.gson.Gson;
 import br.com.profPerfeito.model.Curso;
 import br.com.profPerfeito.model.CursoDao;
 import br.com.profPerfeito.model.MateriaDao;
-import br.com.profPerfeito.model.Professor;
-import br.com.profPerfeito.model.ProfessorDao;
 import br.com.profPerfeito.model.SubMateria;
 import br.com.profPerfeito.model.SubMateriaDao;
+import br.com.profPerfeito.model.Usuario;
+import br.com.profPerfeito.model.UsuarioDao;
 import br.com.profPerfeito.util.Util;
 
 @Controller
@@ -54,7 +54,7 @@ public class CursoController {
 
 	// Salvar curso
 	@RequestMapping("tela/saveCurso")
-	public String save1(@Valid Curso curso, Professor professor, @RequestParam("file") MultipartFile imagem,
+	public String save1(@Valid Curso curso, Usuario usuario, @RequestParam("file") MultipartFile imagem,
 			HttpServletRequest request, BindingResult result, RedirectAttributes redirectAttributes) {
 		// IMPLEMENTAÇÃO DA IMAGEM
 
@@ -63,14 +63,14 @@ public class CursoController {
 		}
 
 		if (Util.fazerUploadImagem(imagem)) {
-			professor.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
+			usuario.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
 		}
 
 		CursoDao dao = new CursoDao();
 		dao.salvar(curso);
 
-		ProfessorDao dao1 = new ProfessorDao();
-		dao1.alterar(professor);
+		UsuarioDao dao1 = new UsuarioDao();
+		dao1.alterar(usuario);
 
 		request.getSession().setAttribute("idCurso", curso.getIdcurso());
 

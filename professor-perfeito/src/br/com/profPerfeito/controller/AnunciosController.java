@@ -16,9 +16,9 @@ import br.com.profPerfeito.model.AnunciosDao;
 import br.com.profPerfeito.model.Curso;
 import br.com.profPerfeito.model.CursoDao;
 import br.com.profPerfeito.model.MateriaDao;
-import br.com.profPerfeito.model.Professor;
 import br.com.profPerfeito.model.SubMateria;
 import br.com.profPerfeito.model.SubMateriaDao;
+import br.com.profPerfeito.model.Usuario;
 
 @Controller
 public class AnunciosController {
@@ -51,15 +51,15 @@ public class AnunciosController {
 	@RequestMapping("/tela/anuncios")
 	public String adicionarAnuncios(Model model, HttpSession session, HttpServletRequest request) {
 
-		Professor professor = (Professor) session.getAttribute("professorLogado");
-		if (professor == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuario == null) {
 
 			return "redirect:/";
 		}	
 				
 		
 		//id professor
-		model.addAttribute("professor", professor.getIdprofessor());
+		model.addAttribute("usuario", usuario.getIdusuario());
 		
 		//listar materia e sub materia
 		SubMateriaDao dao = new SubMateriaDao();

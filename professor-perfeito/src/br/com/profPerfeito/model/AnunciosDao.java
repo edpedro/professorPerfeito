@@ -38,7 +38,7 @@ public class AnunciosDao {
 		Query query = null;
 
 		int Anuncios = AnunciosPerfil;
-		query = manager.createQuery("FROM Anuncios WHERE professor_idprofessor LIKE :paramAnunciosPerfil");
+		query = manager.createQuery("FROM Anuncios WHERE usuario_idusuario LIKE :paramAnunciosPerfil");
 		query.setParameter("paramAnunciosPerfil", "%" + Anuncios + "%");
 
 		List<Anuncios> lista = query.getResultList();
@@ -47,16 +47,15 @@ public class AnunciosDao {
 		return lista;
 	}
 	public void remover(int id) {
-		EntityManagerFactory factory =
-		Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		Anuncios produto = manager.find(Anuncios.class, id);
+		Anuncios anuncios = manager.find(Anuncios.class, id);
 		manager.getTransaction().begin();
-		manager.remove(produto);
+		manager.remove(anuncios);
 		manager.getTransaction().commit();
 		manager.close();
 		factory.close();
-		}
+	}
 	public List<Anuncios> buscar(String anuncios) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -71,6 +70,20 @@ public class AnunciosDao {
 		factory.close();
 		return lista;
 
+	}
+	public Anuncios buscarAnunciosID(int anuncios) {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+		EntityManager manager = factory.createEntityManager();
+		Query query = manager.createQuery("FROM Anuncios WHERE idanuncios LIKE :paramID");
+		query.setParameter("paramID", anuncios);
+		List<Anuncios> registros = query.getResultList();
+		Anuncios obj = null;
+		if (!registros.isEmpty()) {
+			obj = (Anuncios) registros.get(0);
+		}
+		manager.close();
+		factory.close();
+		return obj;
 	}
 
 }

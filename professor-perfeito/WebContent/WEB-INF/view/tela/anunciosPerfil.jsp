@@ -54,18 +54,16 @@
 	<div class="container-fluid display-table">
 		<div class="row display-table-row">
 			<!--MENU PAINEL-->
-			<c:import url="menu/menuPainel.jsp" />
+			<<c:if test="${not empty alunoPainel}">
+				<c:import url="menu/menuPainelA.jsp" />
+			</c:if>
+			<c:if test="${not empty professorPainel}">
+				<c:import url="menu/menuPainelP.jsp" />
+			</c:if>
 
 			<div class="col-md-10 col-sm-11 display-table-cell v-align">
 				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-				<c:choose>
-					<c:when test="${not empty alunoLogado}">
-						<c:import url="menu/menuFotoAlun.jsp" />
-					</c:when>
-					<c:when test="${not empty professorLogado}">
-						<c:import url="menu/menuFotoProf.jsp" />
-					</c:when>
-				</c:choose>
+				<c:import url="menu/menuFoto.jsp" />
 				<div class="user-dashboard">
 					<div class="container-fluid">
 						<div class="row">
@@ -94,7 +92,7 @@
 										<h2>Anúncio</h2>
 										<div class="circle1 ">
 											<img
-												src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
+												src="<%=request.getContextPath()%>/resources/img1/${curso.usuario.imagem}">
 										</div>
 										<div class="col-xs-12">
 											<h5 style="text-align: center;" id="limit">${curso.titulo}...</h5>
@@ -110,7 +108,7 @@
 										<h2>Anúncios</h2>
 										<div class="circle1">
 											<img
-												src="<%=request.getContextPath()%>/resources/img1/${anuncios.professor.imagem}">
+												src="<%=request.getContextPath()%>/resources/img1/${anuncios.usuario.imagem}">
 										</div>
 										<div class="divider">
 											<h5 style="text-align: center;" id="limit">${anuncios.titulo}.</h5>

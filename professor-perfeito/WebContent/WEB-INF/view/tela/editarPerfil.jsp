@@ -122,8 +122,6 @@
 							}
 						});
 			});
-	
-	
 </script>
 <script type="text/javascript">
 	window.setTimeout(function() {
@@ -132,9 +130,9 @@
 		});
 	}, 4000);
 
-	$(document).ready(function() {	
+	$(document).ready(function() {
 		$("#alterarConta").validate({
-			rules : {				
+			rules : {
 				email : {
 					required : true,
 					email : true
@@ -154,10 +152,10 @@
 	<c:import url="menu/menuSessão.jsp" />
 
 	<c:if test="${msg1 !=null}">
-	<div class="alert alert-danger" role="alert"
-		style="width: 400px; height: 50px;">
-		<strong>${msg1}</strong>
-	</div>
+		<div class="alert alert-danger" role="alert"
+			style="width: 400px; height: 50px;">
+			<strong>${msg1}</strong>
+		</div>
 	</c:if>
 	<c:if test="${msg !=null}">
 		<div class="alert alert-success" role="alert"
@@ -175,39 +173,40 @@
 	<div class="container-fluid display-table">
 		<div class="row display-table-row">
 			<!--MENU PAINEL-->
-			<c:import url="menu/menuPainel.jsp" />
+			<c:if test="${not empty alunoPainel}">
+				<c:import url="menu/menuPainelA.jsp" />
+			</c:if>
+			<c:if test="${not empty professorPainel}">
+				<c:import url="menu/menuPainelP.jsp" />
+			</c:if>
 
 
 			<div class="col-md-10 col-sm-11 display-table-cell v-align">
 				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-				<c:choose>
-					<c:when test="${not empty alunoLogado}">
-						<c:import url="menu/menuFotoAlun.jsp" />
-					</c:when>
-					<c:when test="${not empty professorLogado}">
-						<c:import url="menu/menuFotoProf.jsp" />
-					</c:when>
-				</c:choose>
+
+				<c:import url="menu/menuFoto.jsp" />
 
 				<div class="user-dashboard">
 					<div class="row">
-						<form action="alterarProfessor" method="post"
+						<form action="alterarUsuario" method="post"
 							enctype="multipart/form-data">
 							<div class="col-md-7 col-sm-5 col-xs-12 gutter" id="teste">
 								<div class="sales" id="info">
 									<div class="circle2">
 										<img
-											src="<%=request.getContextPath()%>/resources/img1/${professor.imagem}">
+											src="<%=request.getContextPath()%>/resources/img1/${usuario.imagem}">
 									</div>
 									<div class="divider">
-										<div class="form-group" style="margin-left:30px;">
+										<div class="form-group" style="margin-left: 30px;">
 											<div class="row">
-												<label for='selecao-arquivo' id="lab" >Alterar a Foto
+												<label for='selecao-arquivo' id="lab">Alterar a Foto
 													&#187;</label> <input id="selecao-arquivo" class="fot" name="file"
-													type='file' onchange="readURL(this);" value="${professor.imagem}">
+													type='file' onchange="readURL(this);"
+													value="${usuario.imagem}">
 											</div>
 										</div>
-											<img id="blah" src="" alt="" style=" width:50px; margin-left: 230px;"/>
+										<img id="blah" src="" alt=""
+											style="width: 50px; margin-left: 230px;" />
 									</div>
 								</div>
 
@@ -217,58 +216,58 @@
 									</div>
 
 
-									<input type="hidden" name="idprofessor"
-										value="${professor.idprofessor}">
+									<input type="hidden" name="idusuario"
+										value="${usuario.idusuario}">
 
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">Nome</label> <input type="text"
 												class="form-control" id="inputEmail4" placeholder="nome"
-												name="nome" value="${professor.nome}">
+												name="nome" value="${usuario.nome}">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="inputPassword4">Data nascimento</label> <input
 												type="date" class="form-control" id="inputPassword4"
-												name="dataNascimento" value="${professor.dataNascimento}">
+												name="dataNascimento" value="${usuario.dataNascimento}">
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label for="inputCity">Celular</label> <input type="text"
 												class="form-control" id="inputCity" name="celular"
-												value="${professor.celular}">
+												value="${usuario.celular}">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="inputCity">Telefone</label> <input type="text"
 												class="form-control" id="inputCity" name="telefone"
-												value="${professor.telefone}">
+												value="${usuario.telefone}">
 										</div>
 									</div>
 									<div class="form-row">
 										<div class="form-group col-md-3">
 											<label for="cep">CEP</label> <input type="text"
 												class="form-control" id="cep" name="cep"
-												value="${professor.cep}" size="10" maxlength="9">
+												value="${usuario.cep}" size="10" maxlength="9">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="cidade">Cidade</label> <input type="text"
 												class="form-control" id="cidade" name="cidade" size="40"
-												value="${professor.cidade}">
+												value="${usuario.cidade}">
 										</div>
 										<div class="form-group col-md-3">
 											<label for="uf">Estado</label> <input type="text"
 												class="form-control" id="uf" name="estado" size="2"
-												value="${professor.estado}">
+												value="${usuario.estado}">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="rua">Rua</label> <input type="text"
 												class="form-control" id="rua" name="rua" size="60"
-												value="${professor.rua}">
+												value="${usuario.rua}">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="bairro">Bairro</label> <input type="text"
 												class="form-control" id="bairro" name="bairro" size="40"
-												value="${professor.bairro}">
+												value="${usuario.bairro}">
 										</div>
 										<div class="form-group">
 											<button type="submit" class="btn btn-success">Alterar</button>
@@ -280,19 +279,20 @@
 						<div class="col-md-5 col-sm-7 col-xs-12 gutter">
 							<div class="sales s1">
 								<div class="col-md-12">
-									<h2 style="margin-bottom: 10px;">Conta</h2>
-								</div>								
+									<h2 style="margin-bottom: 10px;">Alterar senha</h2>
+								</div>
 								<div class="col-md-12">
 									<form action="alterarConta" method="post">
-										<input type="hidden" name="idprofessor"
-										value="${professor.idprofessor}">
+										<input type="hidden" name="idusuario"
+											value="${usuario.idusuario}">
 										<div class="form-group">
 											<label for="email">Email</label> <input type="email"
 												class="form-control" id="email" name="email">
 										</div>
 										<div class="form-group">
-											<label for="senha">Senha Antiga</label> <input type="password"
-												class="form-control" id="senha" name="senhaAntiga">
+											<label for="senha">Senha Antiga</label> <input
+												type="password" class="form-control" id="senha"
+												name="senhaAntiga">
 										</div>
 										<div class="form-group">
 											<label for="senha">Senha Nova</label> <input type="password"
@@ -308,17 +308,9 @@
 								</div>
 								<div class="col-md-12">
 									<form action="exluirConta" method="post">
-										<input type="hidden" name="idprofessor"
-										value="${professor.idprofessor}">
-										
-										<c:forEach var="curso" items="${curso}">
-										
-										<input type="hidden" name="idcurso"
-										value="${curso.idcurso}">
-										
-										</c:forEach>
-										
-										
+										<input type="hidden" name="idusuario"
+											value="${usuario.idusuario}">
+
 										<div class="form-group">
 											<label for="email">Email</label> <input type="email"
 												class="form-control" id="email" name="email">
@@ -328,31 +320,34 @@
 												class="form-control" id="pwd" name="senha">
 										</div>
 										<a href="#" data-toggle="modal" data-target="#exampleModal">
-										<button  type="button" class="btn btn-success">Excluir</button></a>
-										
+											<button type="button" class="btn btn-success">Excluir</button>
+										</a>
+
 										<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">EXCLUIR CONTA</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">Deseja excluir conta</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-success"
-													data-dismiss="modal">Fecha</button>
-												<button type="submit" class="btn btn-danger">Excluir conta</button>
+										<div class="modal fade" id="exampleModal" tabindex="-1"
+											role="dialog" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">EXCLUIR
+															CONTA</h5>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">Deseja excluir conta</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-success"
+															data-dismiss="modal">Fecha</button>
+														<button type="submit" class="btn btn-danger">Excluir
+															conta</button>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-										
+
 									</form>
 								</div>
 							</div>

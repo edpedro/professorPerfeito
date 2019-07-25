@@ -83,12 +83,9 @@
 </head>
 <body>
 	<!-- Menu logado-->
-	<c:choose>
-		<c:when test="${not empty alunoLogado}">
-			<c:import url="menu/menuA.jsp" />
-		</c:when>
-		<c:when test="${not empty professorLogado}">
-			<c:import url="menu/menuP.jsp" />
+	<c:choose>		
+		<c:when test="${not empty usuarioLogado}">
+			<c:import url="menu/menuUsuario.jsp" />
 
 		</c:when>
 		<c:otherwise>
@@ -179,15 +176,15 @@
 							<div class="pm-staff-profile-image-wrapper text-center">
 								<div class="pm-staff-profile-image">
 									<img
-										src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
+										src="<%=request.getContextPath()%>/resources/img1/${curso.usuario.imagem}"
 										alt="" class="img-thumbnail img-circle"
 										style="margin-top: 1px;" />
 								</div>
 							</div>
 							<div class="pm-staff-profile-details text-center">
-								<p class="pm-staff-profile-name">${curso.professor.nome}</p>
-								<p class="pm-staff-profile-title">${curso.professor.cidade}-
-									${curso.professor.estado}</p>
+								<p class="pm-staff-profile-name">${curso.usuario.nome}</p>
+								<p class="pm-staff-profile-title">${curso.usuario.cidade}-
+									${curso.usuario.estado}</p>
 								<p class="pm-staff-profile-bio">${curso.titulo}</p>
 							</div>
 						</div>
@@ -343,14 +340,14 @@
 				<div class="col-md-6">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<div class="orga-stru">
-							<h3>${listaTodosProfessor}</h3>
+							<h3></h3>
 							<p>professores</p>
 							<i class="fa fa-male"></i>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 						<div class="orga-stru">
-							<h3>${listaTodosAluno}</h3>
+							<h3></h3>
 							<p>alunos satisfeitos</p>
 							<i class="fa fa-male"></i>
 						</div>

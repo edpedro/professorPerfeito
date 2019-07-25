@@ -13,18 +13,16 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "curso")
-public class Curso {
-
-	
+public class Curso {	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idcurso;
 
 	@ManyToOne	
-	@JoinColumn(name = "professor_idprofessor")
+	@JoinColumn(name = "usuario_idusuario")
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Professor professor;
+	private Usuario usuario;
 
 	@ManyToOne
 	@JoinColumn(name = "materia_idmateria")
@@ -172,14 +170,14 @@ public class Curso {
 
 	public void setValorPacote(String valorPacote) {
 		this.valorPacote = valorPacote;
+	}	
+
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Materia getMateria() {

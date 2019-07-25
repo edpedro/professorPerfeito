@@ -68,20 +68,18 @@
 	<div class="container-fluid display-table">
 		<div class="row display-table-row">
 			<!--MENU PAINEL-->
-			<c:import url="menu/menuPainel.jsp" />
-
-
+		<c:if test="${not empty alunoPainel}">
+			<c:import url="menu/menuPainelA.jsp" />
+		</c:if>
+		<c:if test="${not empty professorPainel}">
+		<c:import url="menu/menuPainelP.jsp" />
+		</c:if>
+		
 			<div class="col-md-10 col-sm-11 display-table-cell v-align">
 				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-				<c:choose>
-					<c:when test="${not empty alunoLogado}">
-						<c:import url="menu/menuFotoAlun.jsp" />
-					</c:when>
-					<c:when test="${not empty professorLogado}">
-						<c:import url="menu/menuFotoProf.jsp" />
-					</c:when>
-				</c:choose>
-				<c:forEach var="curso" items="${listaCurso}">
+				
+				<c:import url="menu/menuFoto.jsp" />				
+				
 					<div class="user-dashboard">
 						<div class="row">
 
@@ -90,12 +88,12 @@
 								<div class="sales">
 									<div class="circle">
 										<img
-											src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
+											src="<%=request.getContextPath()%>/resources/img1/${usuario1.imagem}">
 									</div>
 									<div class="divider">
-										<h3 style="text-align: center;">${curso.materia.nome_materia}</h3>
-										<h5 style="text-align: center;">${curso.competencia}</h5>
-										<h3 style="text-align: center;">R$${curso.valorHora}/h</h3>
+										<h3 style="text-align: center;">${usuario1.nome}</h3>
+										<h5 style="text-align: center;">${usuario1.cidade}</h5>
+										<h3 style="text-align: center;">${usuario1.estado}</h3>
 									</div>
 								</div>
 
@@ -124,21 +122,23 @@
 									<button class="btn btn-success" type="button">Mais</button>
 								</div>
 								<div class="sales">
+								<c:forEach var="curso" items="${listaCurso}">
 									<h2>Anúncios</h2>
 									<div class="circle1">
 										<img
-											src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}">
+											src="<%=request.getContextPath()%>/resources/img1/${curso.usuario.imagem}">
 									</div>
 									<div class="divider">
 										<h5 style="text-align: center;" id="limit">${curso.titulo}.</h5>
 									</div>
 									<a href="edit?idAnuncio=${curso.idcurso}"><button
 											class="btn btn-success">Editar</button></a>
+											</c:forEach>
 								</div>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
+				
 			</div>
 		</div>
 

@@ -23,7 +23,7 @@ public class ExebirProfessor {
 		CursoDao dao = new CursoDao();
 		Curso curso = dao.buscarPorId(id);
 		model.addAttribute("ExibirProfessor", curso);	
-		return "tela/exebirProfessor";
+		return "tela/professor/exebirProfessor";
 		
 		}
 		

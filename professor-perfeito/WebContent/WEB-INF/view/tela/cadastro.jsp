@@ -38,11 +38,11 @@
 							</div>
 							<div class="radio-btn-group">
                         <div class="radio">
-                          <input type="radio" name="radio" value="A" checked="checked"  id="click_me"/>
+                          <input type="radio" name="tipoUsuario" value="A" checked="checked"  id="click_me"/>
                           <label for="click_me">Aluno</label>
                         </div>
                         <div class="radio">
-                          <input type="radio" name="radio" value="P"  id="or_me"/>
+                          <input type="radio" name="tipoUsuario" value="P"  id="or_me"/>
                           <label for="or_me">Professor</label>
                         </div>
                       </div>    

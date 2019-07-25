@@ -122,7 +122,7 @@
 			
 			
 			
-			<input type="hidden" id="professor" name="professor" value="${professor}">
+			<input type="hidden" id="usuario" name="usuario" value="${usuario}">
 			
 			
 			

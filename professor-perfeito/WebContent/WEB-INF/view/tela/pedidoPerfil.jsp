@@ -82,60 +82,34 @@
 
 				<div class="user-dashboard">
 					<div class="row">
-
-						<div class="col-md-5 col-sm-5 col-xs-12 gutter" id="teste">
-
-							<div class="sales">
-								<div class="circle">
-									<img
-										src="<%=request.getContextPath()%>/resources/img1/${usuario1.imagem}">
-								</div>
-								<div class="divider">
-									<h3 style="text-align: center;">${usuario1.nome}</h3>
-									<h5 style="text-align: center;">${usuario1.cidade}</h5>
-									<h3 style="text-align: center;">${usuario1.estado}</h3>
-								</div>
-							</div>
-
-						</div>
-
-						<div class="col-md-7 col-sm-7 col-xs-12 gutter">
+						<div class="col-md-8 col-sm-7 col-xs-12 gutter">
 							<div class="sales s1">
 								<div class="col-md-12">
-									<h2>Pedidos de aulas</h2>
-
+									<h2>Pedido de aula</h2>
 								</div>
 								<div class="col-md-12">
-									<h5>1 - Fernando</h5>
+									<a href="#"><h4>Fernando</h4></a>
+									<h5>Aula Individual</h5>
+									<h5>Pe - Recife</h5>
+									<h5>81 - 9999-8888</h5>
 								</div>
-								<button class="btn btn-success" type="button">Mais</button>
+								<button class="btn btn-success" type="button">Confirma
+								</button>
 							</div>
 						</div>
-						<div class="col-md-7 col-sm-7 col-xs-12 gutter">
+						<div class="col-md-8 col-sm-7 col-xs-12 gutter">
 							<div class="sales s1">
 								<div class="col-md-12">
-									<h2>Turmas</h2>
+									<h2>Pedido de aula</h2>
 								</div>
 								<div class="col-md-12">
-									<h5>1 - Grupo</h5>
+									<a href="#"><h4>Fernando</h4></a>
+									<h5>Aula em Grupo</h5>
+									<h5>Pe - Recife</h5>
+									<h5>81 - 9999-8888</h5>
 								</div>
-								<button class="btn btn-success" type="button">Mais</button>
-							</div>
-							<div class="sales">
-								<c:forEach var="curso" items="${listaCurso}">
-									<h2>Anúncios</h2>
-									<div class="circle1">
-										<img
-											src="<%=request.getContextPath()%>/resources/img1/${curso.usuario.imagem}">
-									</div>
-									<div class="divider">
-										<h5 style="text-align: center;" id="limit">${curso.titulo}.</h5>
-									</div>
-									<a href="edit?idAnuncio=${curso.idcurso}"><button
-											style="margin-left: 10px;" class="btn btn-success">Editar</button></a>
-									<a href="exibir?id=${curso.idcurso}"><button
-											class="btn btn-primary">Exibir</button></a>
-								</c:forEach>
+								<button class="btn btn-success" type="button">Confirma
+								</button>
 							</div>
 						</div>
 					</div>
@@ -143,8 +117,8 @@
 
 			</div>
 		</div>
-
 	</div>
+
 
 </body>
 </html>

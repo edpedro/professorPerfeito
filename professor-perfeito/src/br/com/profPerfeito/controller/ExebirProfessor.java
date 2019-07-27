@@ -11,23 +11,26 @@ import br.com.profPerfeito.model.Curso;
 import br.com.profPerfeito.model.CursoDao;
 
 @Controller
-public class ExebirProfessor {		
-		
-		@RequestMapping("/tela/exibir")
-		public String exibir(@RequestParam("id") Integer id, Model model){
-			
+public class ExebirProfessor {
+
+	@RequestMapping("/tela/exibir")
+	public String exibir(@RequestParam("id") Integer id, Model model) {
+
+		// Exibir professor
 		AnunciosDao dao1 = new AnunciosDao();
 		Anuncios anuncios = dao1.buscarPorId(id);
-		model.addAttribute("ExibirProfessor", anuncios);	
-		
+		model.addAttribute("Exibir", anuncios);
+		// Exibir curso
 		CursoDao dao = new CursoDao();
 		Curso curso = dao.buscarPorId(id);
-		model.addAttribute("ExibirProfessor", curso);	
-		return "tela/professor/exebirProfessor";
-		
-		}
-		
-		
-	
+		model.addAttribute("Exibir", curso);	
+
+		// Exibir anuncios
+		AnunciosDao dao2 = new AnunciosDao();
+		Anuncios anuncios1 = dao2.buscarPorId(id);
+		model.addAttribute("Exibir", anuncios1);
+		return "tela/exebirProfessor";
+
+	}
 
 }

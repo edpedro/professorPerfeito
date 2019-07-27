@@ -102,4 +102,24 @@ public class PerfilController {
 		return "tela/editarPerfil";
 	}
 
+	// TELA DE PEDIDO
+	@RequestMapping("/tela/pedido")
+	public String pedido(Model model, HttpSession session) {
+
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		if (usuario == null) {
+
+			return "redirect:/";
+		}
+
+		// VERIFICAR SER É ALUNO OU PROFESSOR
+		if (usuario.getTipoUsuario().equalsIgnoreCase("a")) {
+			model.addAttribute("alunoPainel", usuario);
+		} else {
+			model.addAttribute("professorPainel", usuario);
+		}
+
+		return "tela/pedidoPerfil";
+	}
+
 }

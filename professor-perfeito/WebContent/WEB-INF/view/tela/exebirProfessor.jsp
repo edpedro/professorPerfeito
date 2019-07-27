@@ -38,17 +38,13 @@
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/resources/bootstrap/js/custom.js"></script>
-	
-	
+
+
 </head>
 <body>
-	<!-- Menu logado-->
 	<c:choose>
-		<c:when test="${not empty alunoLogado}">
-			<c:import url="menu/menuA.jsp" />
-		</c:when>
-		<c:when test="${not empty professorLogado}">
-			<c:import url="menu/menuP.jsp" />
+		<c:when test="${not empty usuarioLogado}">
+			<c:import url="menu/menuUsuario.jsp" />
 
 		</c:when>
 		<c:otherwise>
@@ -57,28 +53,29 @@
 
 		</c:otherwise>
 	</c:choose>
-	<div class="container-fluid selec1">	
+	<div class="container-fluid selec1">
 		<div class="container st3">
-			<div class="user-dashboard">
-			
-				<div class="row">				
+			<div class="user-dashboard">				
+				<div class="row">
 					<div class="col-md-12 col-sm-7 col-xs-12 gutter">
 						<div class="sales">
-							<div class="col-md-4" style="width:230px;">
+							<div class="col-md-4" style="width: 230px;">
 								<div class="circle3">
-									<img src="<%=request.getContextPath()%>/resources/img1/${ExibirProfessor.professor.imagem}"
-									class="img-thumbnail img-circle"
-									style="background-color: #aaa; width: 100%; height: 200px; overflow: hidden; position: relative; bottom:20px;">
+									<img
+										src="<%=request.getContextPath()%>/resources/img1/${Exibir.usuario.imagem}"
+										class="img-thumbnail img-circle"
+										style="background-color: #aaa; width: 100%; height: 200px; overflow: hidden; position: relative; bottom: 20px;">
 								</div>
 							</div>
 							<div class="col-md-8">
 								<div class="divider">
-									<a href="#"><h1 style="text-align: center; margin: -20px;">${ExibirProfessor.professor.nome}</h1></a>
-									<h4 style="text-align: center;">${ExibirProfessor.professor.cidade} - ${ExibirProfessor.professor.estado}</h4>
-									<h5 style="text-align: center;">${ExibirProfessor.competencia}</h5>
+									<a href="#"><h1 style="text-align: center; margin: -20px;">${Exibir.usuario.nome}</h1></a>
+									<h4 style="text-align: center;">${Exibir.usuario.cidade}
+										- ${Exibir.usuario.estado}</h4>
+									<h5 style="text-align: center;">${Exibir.competencia}</h5>
 								</div>
 								<div id="btn6">
-									<h1 style="text-align: center; margin-left: 230px;">R$${ExibirProfessor.valorHora}/h</h1>
+									<h1 style="text-align: center; margin-left: 230px;">R$${Exibir.valorHora}/h</h1>
 									<button class="btn btn-success" type="button">
 										Solicitar Aula</button>
 								</div>
@@ -95,7 +92,7 @@
 								<form action="">
 									<div class="form-group form-check">
 										<label class="form-check-label">
-											<button class="btn btn-success btn-block" type="button" >Todos</button>
+											<button class="btn btn-success btn-block" type="button">Todos</button>
 										</label>
 									</div>
 								</form>
@@ -108,9 +105,9 @@
 							<div class="col-md-12">
 								<form action="">
 									<label class="form-check-label">
-										<button class="btn btn-success" type="button">${ExibirProfessor.ministra}</button>
+										<button class="btn btn-success" type="button">${Exibir.ministra}</button>
 									</label>
-									
+
 								</form>
 							</div>
 						</div>
@@ -121,12 +118,12 @@
 							<div class="col-md-12">
 								<form action="">
 									<label class="form-check-label">
-										<button class="btn btn-success " type="button">${ExibirProfessor.materia.nome_materia}</button>
+										<button class="btn btn-success " type="button">${Exibir.materia.nome_materia}</button>
 									</label> <label class="form-check-label">
-										<button class="btn btn-success " type="button">${ExibirProfessor.subMateria}</button>
+										<button class="btn btn-success " type="button">${Exibir.subMateria}</button>
 									</label> <label class="form-check-label">
-										<button class="btn btn-success " type="button">${ExibirProfessor.competencia}</button>
-									</label> 
+										<button class="btn btn-success " type="button">${Exibir.competencia}</button>
+									</label>
 								</form>
 							</div>
 						</div>
@@ -136,20 +133,23 @@
 							</div>
 							<div class="col-md-12">
 								<form action="">
-								<c:if test="${not empty ExibirProfessor.aulasCasa}"> 
-									<label class="form-check-label">
-										<button class="btn btn-success " type="button">Casa do Professor</button>
-									</label>
-									</c:if> 
-									<c:if test="${not empty ExibirProfessor.aulasWebcam}"> 
-									<label class="form-check-label">
-										<button class="btn btn-success " type="button">Por webcam</button>
-									</label>
+									<c:if test="${not empty Exibir.aulasCasa}">
+										<label class="form-check-label">
+											<button class="btn btn-success " type="button">Casa
+												do Professor</button>
+										</label>
 									</c:if>
-									<c:if test="${not empty ExibirProfessor.aulasAluno}"> 
-									<label class="form-check-label">
-										<button class="btn btn-success " type="button">Casa do Aluno</button>
-									</label>
+									<c:if test="${not empty Exibir.aulasWebcam}">
+										<label class="form-check-label">
+											<button class="btn btn-success " type="button">Por
+												webcam</button>
+										</label>
+									</c:if>
+									<c:if test="${not empty Exibir.aulasAluno}">
+										<label class="form-check-label">
+											<button class="btn btn-success " type="button">Casa
+												do Aluno</button>
+										</label>
 									</c:if>
 
 								</form>
@@ -162,7 +162,7 @@
 								<h2 style="margin-bottom: 10px;">Formação</h2>
 							</div>
 							<div class="col-md-12">
-								<h3>${ExibirProfessor.formacao}</h3>
+								<h3>${Exibir.formacao}</h3>
 							</div>
 						</div>
 						<div class="sales s1">
@@ -170,18 +170,19 @@
 								<h2 style="margin-bottom: 10px;">Apresentação</h2>
 							</div>
 							<div class="col-md-12">
-								<p>${ExibirProfessor.apresentacao}
+								<p>${Exibir.apresentacao}
 								<p>
 							</div>
 							<div class="col-md-12">
 								<h2 style="margin-bottom: 10px;">Metodologia</h2>
 							</div>
 							<div class="col-md-12">
-								<p>${ExibirProfessor.metodologia}<p>
+								<p>${Exibir.metodologia}
+								<p>
 							</div>
 						</div>
 					</div>
-				</div>			
+				</div>
 			</div>
 		</div>
 	</div>

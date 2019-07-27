@@ -98,7 +98,9 @@
 											<h5 style="text-align: center;" id="limit">${curso.titulo}...</h5>
 										</div>
 										<a href="edit?idAnuncio=${curso.idcurso}"><button
-												class="btn btn-success">Editar</button></a>
+												class="btn btn-success" style="margin-left: 10px;">Editar</button></a>
+												<a href="exibir?id=${curso.idcurso}"><button
+											class="btn btn-primary">Exibir</button></a>
 									</div>
 								</div>
 							</c:forEach>
@@ -114,9 +116,12 @@
 											<h5 style="text-align: center;" id="limit">${anuncios.titulo}.</h5>
 										</div>
 										<a href="edit?idAnuncio=${anuncios.idanuncios}"><button
-												class="btn btn-success">Editar</button></a> - <a href="#"
+												class="btn btn-success" style="margin-left: 10px;">Editar</button></a> - <a href="#"
 											data-toggle="modal" data-target="#exampleModal"><button
-												class="btn btn-danger">Remover</button></a>
+												class="btn btn-danger" style="margin-left: 10px;">Remover</button></a>
+												<a href="exibir?id=${anuncios.idanuncios}"><button
+											class="btn btn-primary">Exibir</button></a>
+												
 									</div>
 								</div>
 

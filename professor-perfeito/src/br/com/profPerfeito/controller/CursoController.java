@@ -3,12 +3,10 @@ package br.com.profPerfeito.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,30 +52,22 @@ public class CursoController {
 
 	// Salvar curso
 	@RequestMapping("tela/saveCurso")
-	public String save1(@Valid Curso curso, Usuario usuario, @RequestParam("file") MultipartFile imagem,
-			HttpServletRequest request, BindingResult result, RedirectAttributes redirectAttributes) {
+	public String save1(Curso curso, Usuario usuario, @RequestParam("file") MultipartFile imagem,
+			HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		// IMPLEMENTAÇÃO DA IMAGEM
-
-		if (result.hasErrors()) {
-			return "tela/cadastroCurso";
-		}
 
 		if (Util.fazerUploadImagem(imagem)) {
 			usuario.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
 		}
 
-		CursoDao dao = new CursoDao();
-		dao.salvar(curso);
+		CursoDao dao1 = new CursoDao();
+		dao1.salvar(curso);
 
-		UsuarioDao dao1 = new UsuarioDao();
-		dao1.alterar(usuario);
-
-		request.getSession().setAttribute("idCurso", curso.getIdcurso());
+		UsuarioDao dao2 = new UsuarioDao();
+		dao2.alterar(usuario);	
 
 		redirectAttributes.addFlashAttribute("msg", "Cadastrado com sucesso!");
 		return "redirect:/";
-
 	}
 
-	
 }

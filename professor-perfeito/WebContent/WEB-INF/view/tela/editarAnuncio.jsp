@@ -123,8 +123,8 @@
 			<input type="hidden" name="idcurso"
 										value="${editarAnuncio.idcurso}">
 			
-			<input type="hidden" id="professor" name="professor"
-										value="${editarAnuncio.professor.idprofessor}">
+			<input type="hidden" id="usuario" name="usuario"
+										value="${editarAnuncio.usuario.idusuario}">
 			
 			<div class="row setup-content" id="step-1">
 				<div class="col-xs-12">

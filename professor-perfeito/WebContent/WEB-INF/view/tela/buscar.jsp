@@ -42,11 +42,8 @@
 <body>
 	<!-- Menu logado-->
 	<c:choose>
-		<c:when test="${not empty alunoLogado}">
-			<c:import url="menu/menuA.jsp" />
-		</c:when>
-		<c:when test="${not empty professorLogado}">
-			<c:import url="menu/menuP.jsp" />
+		<c:when test="${not empty usuarioLogado}">
+			<c:import url="menu/menuUsuario.jsp" />
 
 		</c:when>
 		<c:otherwise>
@@ -175,16 +172,16 @@
 								<div class="col-md-4">
 									<div class="circle3" style="width: 200px;">
 										<a href="exibir?id=${curso.idcurso}"><img
-											src="<%=request.getContextPath()%>/resources/img1/${curso.professor.imagem}"
+											src="<%=request.getContextPath()%>/resources/img1/${curso.usuario.imagem}"
 											style="background-color: #aaa; border-radius: 50%; width: 100%; height: 200px; overflow: hidden; position: relative; top: 0px; left: px;"></a>
 									</div>
 								</div>
 								<div class="col-md-7">
 									<div class="divider">
 										<a href="exibir?id=${curso.idcurso}"><h1
-												style="text-align: center; margin: -20px;">${curso.professor.nome}</h1></a>
-										<h4 style="text-align: center;">${curso.professor.cidade}
-											- ${curso.professor.estado}</h4>
+												style="text-align: center; margin: -20px;">${curso.usuario.nome}</h1></a>
+										<h4 style="text-align: center;">${curso.usuario.cidade}
+											- ${curso.usuario.estado}</h4>
 										<h5 style="text-align: center;">${curso.titulo}</h5>
 									</div>
 									<div id="btn5">
@@ -201,16 +198,16 @@
 								<div class="col-md-4">
 									<div class="circle3" style="width: 200px;">
 										<a href="exibir?id=${anuncios.idanuncios}"><img
-											src="<%=request.getContextPath()%>/resources/img1/${anuncios.professor.imagem}"
+											src="<%=request.getContextPath()%>/resources/img1/${anuncios.usuario.imagem}"
 											style="background-color: #aaa; border-radius: 50%; width: 100%; height: 200px; overflow: hidden; position: relative; top: 0px; left: px;"></a>
 									</div>
 								</div>
 								<div class="col-md-7">
 									<div class="divider">
 										<a href="exibir?id=${anuncios.idanuncios}"><h1
-												style="text-align: center; margin: -20px;">${anuncios.professor.nome}</h1></a>
-										<h4 style="text-align: center;">${anuncios.professor.cidade}
-											- ${anuncios.professor.estado}</h4>
+												style="text-align: center; margin: -20px;">${anuncios.usuario.nome}</h1></a>
+										<h4 style="text-align: center;">${anuncios.usuario.cidade}
+											- ${anuncios.usuario.estado}</h4>
 										<h5 style="text-align: center;">${anuncios.titulo}</h5>
 									</div>
 									<div id="btn5">

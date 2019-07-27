@@ -9,7 +9,7 @@
 						de controle</span></a></li>
 			<li><a href="turmaPerfil.html"><i class="fa fa-user"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Turma</span></a></li>
-			<li><a href="pedidoPerfil.html"><i class="fa fa-calendar"
+			<li><a href="<%=request.getContextPath()%>/tela/pedido"><i class="fa fa-calendar"
 					aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos
 						de aulas</span></a></li>
 			<li><a href="<%=request.getContextPath()%>/tela/editarPerfil"><i class="fa fa-cog"

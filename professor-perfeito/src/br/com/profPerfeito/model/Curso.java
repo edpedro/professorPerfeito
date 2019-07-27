@@ -30,7 +30,7 @@ public class Curso {
 
 	@Column
 	private String subMateria;
-	
+
 	@Column
 	private String competencia;
 	

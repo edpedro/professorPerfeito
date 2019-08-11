@@ -57,6 +57,12 @@
 			<strong>${msg}</strong>
 		</div>
 	</c:if>
+		<c:if test="${not empty msg1}">
+		<div class="alert alert-danger" role="alert"
+			style="width: 300px; height: 50px;">
+			<strong>${msg1}</strong>
+		</div>
+	</c:if>
 
 	<style>
 .navi i {

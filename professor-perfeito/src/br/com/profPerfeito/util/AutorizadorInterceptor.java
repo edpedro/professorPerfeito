@@ -21,7 +21,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 				|| uri.endsWith("tela/anunciosPerfil")|| uri.endsWith("tela/edit")|| uri.endsWith("tela/update")|| uri.endsWith("tela/anuncios")
 				|| uri.endsWith("tela/salvaAnuncios")|| uri.endsWith("tela/editarPerfil")|| uri.endsWith("tela/alterarUsuario")
 				|| uri.endsWith("tela/alterarConta")|| uri.endsWith("tela/delete")|| uri.endsWith("tela/exluirConta")
-				|| uri.endsWith("tela/pedido")|| uri.endsWith("tela/buscarAnuncios")|| uri.endsWith("tela/buscarCurso19")) {
+				|| uri.endsWith("tela/pedido")|| uri.endsWith("tela/buscarAnuncios")|| uri.endsWith("tela/savePedido")) {
 			return true;
 		}
 

@@ -55,7 +55,7 @@
 	</c:choose>
 	<div class="container-fluid selec1">
 		<div class="container st3">
-			<div class="user-dashboard">				
+			<div class="user-dashboard">
 				<div class="row">
 					<div class="col-md-12 col-sm-7 col-xs-12 gutter">
 						<div class="sales">
@@ -70,14 +70,26 @@
 							<div class="col-md-8">
 								<div class="divider">
 									<a href="#"><h1 style="text-align: center; margin: -20px;">${Exibir.usuario.nome}</h1></a>
-									<h4 style="text-align: center;">${Exibir.usuario.cidade}
-										- ${Exibir.usuario.estado}</h4>
+									<h4 style="text-align: center;">${Exibir.usuario.cidade}-
+										${Exibir.usuario.estado}</h4>
 									<h5 style="text-align: center;">${Exibir.competencia}</h5>
 								</div>
 								<div id="btn6">
 									<h1 style="text-align: center; margin-left: 230px;">R$${Exibir.valorHora}/h</h1>
-									<button class="btn btn-success" type="button">
-										Solicitar Aula</button>
+
+									<c:choose>
+										<c:when test="${not empty usuarioLogado}">
+											<button class="btn btn-success" type="button"
+												data-toggle="modal" data-target="#exampleModal">
+												Solicitar Aula</button>
+
+										</c:when>
+										<c:otherwise>
+											<button class="btn btn-success" type="button"
+												data-target="#cadastro" data-toggle="modal">
+												Solicitar Aula</button>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</div>
@@ -186,6 +198,142 @@
 			</div>
 		</div>
 	</div>
+	<!--  modal pedido de aula -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModal" aria-hidden="true"
+		style="margin-top: -20%">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModal">Solicitar Aula</h5>
+				</div>
+				<form action="savePedido" method="post">
+
+					<input type="hidden" id="curso" name="curso" value="${Exibir.idcurso}"> 
+						<input type="hidden" id="usuario" name="usuario" value="${usuario_idusuario}">
+					<div class="modal-body">
+						<h5>Qual matéria deseja aprender?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+							<div class="radio" style="width: -50%;">
+								<input type="radio" name="materia" value="${Exibir.subMateria}"
+									checked="checked" id="click_me" /> <label for="click_me">${Exibir.materia.nome_materia}</label>
+							</div>
+							<div class="radio">
+								<input type="radio" name="materia" value="${Exibir.subMateria}" id="or_me" /> <label
+									for="or_me">${Exibir.subMateria}</label>
+							</div>
+							<div class="radio">
+								<input type="radio" name="materia" value="${Exibir.competencia}"
+									id="or_me1" /> <label for="or_me1">${Exibir.competencia}</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-body" style="margin-top: -11%">
+						<h5>Como deseja ter suas aulas?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+												
+							<div class="radio">
+								<input type="radio" name="onde_aulas" value="presencial"
+									checked="checked" id="click_pre" /> <label for="click_pre">PRESENCIAL</label>
+							</div>						
+							<div class="radio">
+								<input type="radio" name="onde_aulas" value="em grupo"
+									id="or_gru" /> <label for="or_gru">EM GRUPO</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-body" style="margin-top: -11%">
+						<h5>Para quem é esta aula?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+							<div class="radio">
+								<input type="radio" name="nome_estudade" value="A"
+									checked="checked" id="click_PRA" /> <label for="click_PRA">PRA
+									MIM</label>
+							</div>
+							<div class="radio">
+								<input type="radio" name="nome_estudade" id="or_OUTRO"
+									for="outro" value="Outra pessoa"/> <label for="or_OUTRO">OUTRA PESSOA</label> 
+									<input type="text" name="nome_estudade" value=""
+									placeholder="Outra pessoa" style="width: 200px;" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-body" style="margin-top: -11%">
+						<h5>Onde será a aula?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+							<c:if test="${not empty Exibir.aulasAluno}">
+							<div class="radio">
+								<input type="radio" name="ministrar" value="CASA DO ALUNO"
+									checked="checked" id="click_ALU" /> <label for="click_ALU">CASA
+									DO ALUNO</label>
+							</div>
+							</c:if>
+							<c:if test="${not empty Exibir.aulasWebcam}">
+							<div class="radio">
+								<input type="radio" name="ministrar" value="WEBCAM" id="or_WEB" />
+								<label for="or_WEB">WEBCAM</label>
+							</div>
+							</c:if>
+							<c:if test="${not empty Exibir.aulasCasa}">
+							<div class="radio">
+								<input type="radio" name="ministrar" value="CASA DO PROFESSOR"
+									id="or_PROF" /> <label for="or_PROF">CASA DO PROFESSOR</label>
+							</div>
+							</c:if>
+						</div>
+					</div>
+					<div class="modal-body" style="margin-top: -11%">
+						<h5>Data da primeira aula?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+							<div class="radio">
+								<input type="radio" name="data_inicial" value="MAIS RAPIDO"
+									checked="checked" id="click_RAPIDO" /> <label
+									for="click_RAPIDO">MAIS RAPIDO</label>
+							</div>
+							<div class="radio">
+								<input type="radio" name="data_inicial" id="or_DATA" value="PROPOR DATA" /> <label
+									for="or_DATA">PROPOR UMA DATA</label><input type="date"
+									name="data_inicial" style="width: 200px;" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-body" style="margin-top: -11%">
+						<h5>Seus dados de contato?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+							<div class="radio">
+								<input type="text" name="endereco"
+									placeholder="ENDEREÇO COMPLETO" value="" style="width: 350px;" />
+
+							</div>
+							<div class="radio">
+								<input type="text" name="contato" value=""
+									placeholder="TELEFONE PARA CONTATO" style="width: 200px;" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-body" style="margin-top: -11%">
+						<h5>Conte a <strong>${Exibir.usuario.nome}</strong> o que você deseja aprender em suas
+							aulas ?</h5>
+						<div class="radio-btn-group" style="margin-left: -1%;">
+							<div class="radio">
+								<textarea type="text" name="comentario"
+									placeholder="Escreva a ${Exibir.usuario.nome}" value=""
+									style="width: 350px; height: 100px;"></textarea>
+
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Fecha</button>
+						<button type="submit" class="btn btn-success">Solicitar</button>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
 	<!-- Modal Login-->
 	<c:import url="login.jsp" />
 	<!-- Modal Cadastro-->

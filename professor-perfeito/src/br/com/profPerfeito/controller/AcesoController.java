@@ -19,7 +19,8 @@ import br.com.profPerfeito.model.UsuarioDao;
 public class AcesoController {
 
 	@SuppressWarnings("unused")
-	@RequestMapping("efetuarLogin")
+	
+	@RequestMapping(value= {"efetuarLogin", "", "/tela/efetuarLogin"})
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model model, RedirectAttributes redirectAttributes,
 			HttpServletRequest request) {
 
